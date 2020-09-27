@@ -1,0 +1,95 @@
+<div class="main">
+  <div class="container">
+    <div class="link-index">
+      <%= link_to("←task・eventの一覧へ戻る","/home/index",class:"link-to-index")%>
+    </div>
+    <h1 class="memory-title">現在の予約状況</h1>
+    <div class="memory-task-list">
+      <h2 class="memory-name-task">Task</h2>
+      <div class="memory-task-item">
+        <% if @tasks.where("date >= ?",@today).count >0 %>
+         <% @tasks.each do |task|%>
+         <div class="memory-task">
+           <div class="memory-task-name">
+             <% if task.limit%>
+               <% if task.limit-@datetime >= 60*60*24%>
+                 <%= link_to(task.content,"/tasks/#{task.id}",class:"task-link") %>(<font color="red">〆切<%=((task.limit-@datetime)/(60*60*24)).to_i%>日前</font>)
+               <% else%>
+                 <%= link_to(task.content,"/tasks/#{task.id}",class:"task-link") %>(<font color="red">〆切<%=((task.limit-@datetime)/(60*60)).to_i%>時間前</font>)
+               <%end%>
+             <%else%>
+              <%= link_to(task.content,"/tasks/#{task.id}",class:"task-link") %>
+             <%end%>
+           </div>
+           <div class="memory-task-date">
+             <% if task.repeat == 8 %>
+             <div>
+               <strong>実行日</strong>：<%= task.date.year.to_s%>年<%= task.date.month.to_s%>月<%= task.date.day.to_s%>日
+             </div>
+             <% elsif task.repeat == 7 %>
+             <div>
+               <strong>実行日</strong>：毎日
+             </div>
+             <% else %>
+             <div>
+               <strong>実行日</strong>：毎週<%= @week[task.repeat]%>
+             </div>
+             <% end %>
+           </div>
+           <div class="memory-task-add-date">
+             <strong>登録日</strong>：<%= task.created_at.year.to_s%>年<%= task.created_at.month.to_s%>月<%= task.created_at.day.to_s%>日
+           </div>
+
+           <div class="memory-destroy">
+             <%= link_to("予約を消す","/tasks/#{task.id}/delete",method:"post",class:"memory-destroy-link")%>
+           </div>
+         </div>
+         <%end%>
+        <%else%>
+         <div class="no-task">現在予定しているtaskはありません。</div>
+        <%end%>
+      </div>
+    </div>
+
+    <div class="memory-event-list">
+      <h2 class="memory-name-event">Event</h2>
+      <div class="memory-event-item">
+        <% if @events %>
+        <% @events.each do |event|%>
+        <% if event.repeat == 8 && event.date >= @today || event.repeat != 8%>
+        <div class="memory-event">
+          <div class="memory-event-name">
+            <%= link_to(event.content,"/events/#{event.id}",class:"event-link") %>
+          </div>
+          <div class="memory-event-date">
+            <% if event.repeat == 8 %>
+            <div>
+              <strong>予定日</strong>：<%= event.date.year.to_s%>年<%= event.date.month.to_s%>月<%= event.date.day.to_s%>日
+            </div>
+            <% elsif event.repeat == 7 %>
+            <div>
+              <strong>予定日</strong>：毎日
+            </div>
+            <% else %>
+            <div>
+              <strong>予定日</strong>：毎週<%= @week[event.repeat]%>
+            </div>
+            <% end %>
+          </div>
+          <div class="memory-event-add-date">
+            <strong>登録日</strong>：<%= event.created_at.year.to_s%>年<%= event.created_at.month.to_s%>月<%= event.created_at.day.to_s%>日
+          </div>
+
+          <div class="memory-destroy">
+            <%= link_to("予約を消す","/events/#{event.id}/destroy",method:"post",class:"memory-destroy-link")%>
+          </div>
+        </div>
+        <%end%>
+        <%end%>
+        <%else%>
+        <div class="no-event">現在予定しているeventはありません。</div>
+        <%end%>
+      </div>
+    </div>
+  </div>
+</div>

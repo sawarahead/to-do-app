@@ -1,0 +1,62 @@
+<div class="main">
+  <div class="container">
+
+    <div class="link-index">
+      <%= link_to("←task・eventの一覧へ戻る","/home/index")%>
+    </div>
+
+    <div class="task-show">
+      <h2 class="show-title">task名：<u><%= @task.content %></u></h2>
+
+      <div class="task-data">
+
+        <div class="task-detail">
+          <% if @task.detail %>
+            詳細情報：<div><%= @task.detail%></div>
+          <%else%>
+　　　　　　　詳細情報：なし
+          <%end%>
+        </div>
+
+        <div class="task-time">
+           目安時間：<%= @task.time %>分
+        </div>
+
+        <div class="task-date">
+          <% if @task.repeat == 8 %>
+            実行日：<%= @task.date %>
+          <% elsif @task.repeat == 7 %>
+            実行日：毎日
+          <% else %>
+            実行日：毎週<%= @week[@task.repeat]%>
+          <% end %>
+        </div>
+
+        <div class="task-limit">
+          <%if @task.limit%>
+           〆切：<%=@task.limit%>
+          <%else%>
+           〆切：なし
+          <%end%>
+        </div>
+
+        <div class="task-created-at">
+          taskの登録日時：<%= @task.created_at.year.to_s%>年<%= @task.created_at.month.to_s%>月<%= @task.created_at.day.to_s%>日<%= @week[@task.created_at.wday]%>
+
+        </div>
+        <div class="task-updated-at">
+          taskの最終更新日時：<%= @task.updated_at.year.to_s %>年<%= @task.updated_at.month.to_s%>月<%= @task.updated_at.day.to_s%>日<%= @week[@task.updated_at.wday]%>
+        </div>
+
+        <div class="link-to-task-edit">
+          <%= link_to("編集","/tasks/#{params[:id]}/edit",class:"task-edit-link")%>
+        </div>
+
+        <div class="link-to-task-finish">
+          <%= link_to("終わった！","/tasks/#{@task.id}/destroy",method:"post",class:"finish-task-link")%>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

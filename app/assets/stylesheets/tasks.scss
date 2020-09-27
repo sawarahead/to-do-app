@@ -1,0 +1,485 @@
+/*共通なlink=========================================================================*/
+.link-index{
+  width:100%;
+  height:30px;
+  line-height: 30px;
+  font-size: 25px;
+  text-align: center;
+  padding-top: 20px;
+}
+
+.link-to-index{
+  color:blue;
+}
+
+
+/*memory==============================================================================*/
+.memory-title{
+  width:100%;
+  height:60px;
+  padding:10px 0;
+  margin:0;
+  text-align: center;
+  font-weight: bold;
+  font-size: 60px;
+}
+
+.memory-task-list{
+  width:48%;
+  margin-top:20px;
+  margin-left: 1%;
+  background-color: rgb(230,230,255);
+  border:1px solid rgb(230,230,255);
+  border-radius:10px;
+  float:left;
+}
+
+.memory-name-task{
+  font-size:40px;
+  font-weight: bold;
+  text-align: center;
+  color:blue;
+  margin:0;
+}
+
+.memory-task-item{
+  margin:0 30px;
+}
+
+.memory-task{
+  position:relative;
+  margin-bottom:5px;
+  border-radius:10px;
+  background-color:rgb(200,200,255);
+  padding-bottom: 3px;
+}
+
+.memory-task-name{
+  width:80%;
+  margin:5px auto;
+  text-align: center;
+  font-size:25px;
+}
+
+.memory-task-date{
+  font-size: 20px;
+  position:absolute;
+  left:40px;
+  top:50%;
+  transform: translate(0,-50%);
+}
+
+.memory-task-add-date{
+  font-size: 20px;
+  position:absolute;
+  right:40px;
+  top:50%;
+  transform:translate(0,-50%);
+}
+
+.memory-destroy{
+  font-size: 20px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top:30px;
+  width:23%;
+  background-color:#e6ffe9;
+  border:1px solid #2f4f4f;
+  border-radius: 7px;
+  box-shadow: 0 2px black;
+}
+
+.memory-destroy :hover{
+  background-color: #99ff99;
+}
+
+.memory-destroy :active{
+  position:relative;
+  top:2px;
+  box-shadow: none;
+}
+
+.memory-destroy-link{
+  text-decoration: none;
+  color:red;
+  display: block;
+}
+
+/*-------------------------------------------------------*/
+.memory-event-list{
+  width:48%;
+  margin-top:20px;
+  margin-right: 1%;
+  background-color: rgb(255,230,230);
+  border:1px solid rgb(255,230,230);
+  border-radius:10px;
+  float:right;
+}
+
+.memory-name-event{
+  font-size:40px;
+  font-weight: bold;
+  text-align: center;
+  color:#ff4f02;
+  margin:0;
+}
+
+.memory-event-item{
+  margin:0 30px;
+}
+
+.memory-event{
+  position:relative;
+  margin-bottom:5px;
+  border-radius:10px;
+  background-color:rgb(255,200,200);
+  padding-bottom: 3px;
+}
+
+.memory-event-name{
+  width:80%;
+  margin:5px auto;
+  text-align: center;
+  font-size:25px;
+}
+
+.memory-event-date{
+  font-size: 20px;
+  position:absolute;
+  left:40px;
+  top:50%;
+  transform:translate(0,-50%);
+}
+
+.memory-event-add-date{
+  font-size: 20px;
+  position:absolute;
+  right:40px;
+  top:50%;
+  transform:translate(0,-50%);
+}
+
+/*show===============================================================================*/
+.show-title{
+  width:100%;
+  height:60px;
+  padding:10px 0;
+  margin-bottom:20px;
+  text-align: center;
+  font-weight: bold;
+  font-size:50px;
+}
+
+.task-data{
+  border:1px solid black;
+  border-radius: 5px;
+  background-color: #E6FFE9;
+  width:60%;
+  margin:0 auto;
+  position:relative;
+}
+
+.task-detail, .task-time, .task-date, .task-limit, .task-created-at, .task-updated-at{
+  font-size:30px;
+  font-weight: bold;
+  padding-top:10px;
+  padding-left:20px;
+}
+
+.task-detail div{
+  padding:0 40px 0 30px;
+}
+
+.task-updated-at{
+  margin-bottom:70px;
+}
+
+.link-to-task-edit{
+  position: absolute;
+  left:30%;
+  bottom: 10px;
+}
+
+.task-edit-link{
+  text-decoration: none;
+  color:green;
+  font-size:30px;
+  background-color:rgb(230,230,255);
+  border:1px solid rgb(200,200,235);
+  border-radius: 7px;
+  padding:2px 5px;
+}
+
+.link-to-task-finish{
+  position: absolute;
+  right:30%;
+  bottom: 10px;
+}
+
+.finish-task-link{
+  text-decoration: none;
+  color:red;
+  font-size:30px;
+  background-color:rgb(230,230,255);
+  border:1px solid rgb(200,200,235);
+  border-radius: 7px;
+  padding:2px;
+}
+
+/*new=================================================================================*/
+.new-title{
+  width:100%;
+  height:60px;
+  padding:10px 0;
+  margin:0;
+  text-align: center;
+  font-weight: bold;
+  font-size: 50px;
+}
+
+/*edit================================================================================*/
+
+.back-show{
+  width:100%;
+  height:30px;
+  line-height: 30px;
+  font-size: 25px;
+  text-align: center;
+  padding-top: 20px;
+}
+
+.link-show{
+  color:blue;
+}
+
+.edit-title{
+  width:100%;
+  height:60px;
+  padding:10px 0;
+  margin:0;
+  text-align: center;
+  font-weight: bold;
+  font-size: 50px;
+}
+
+.repeat-not-equal{
+  font-size:25px;
+  padding:0;
+  margin: 0 auto;
+  text-align:center;
+  color:red;
+}
+/*newとeditの共通フォーム-------------------------------------*/
+
+.form-error{
+  text-align: center;
+  margin:0 auto;
+  width:400px;
+  font-size:20px;
+  color:red;
+  border:1px solid rgb(255,100,100);
+  background-color: rgb(255,230,230);
+}
+
+.input-task-form{
+  border:1px solid black;
+  border-radius: 5px;
+  background-color: #d7eeff;
+  width:60%;
+  margin:0 auto;
+}
+
+.input-task-name, .input-task-detail, .input-task-time, .input-task-date, .input-task-repeat, .input-task-limit{
+  font-size:30px;
+  font-weight: bold;
+  padding-top:10px;
+  padding-left:20px;
+}
+
+.input-task-name input{
+  font-size:80%;
+  width:50%;
+  padding:0;
+  margin-left:20px;
+}
+
+.input-task-detail textarea{
+  font-size: 80%;
+  width:90%;
+  vertical-align: top;
+  margin-left:20px;
+}
+
+.input-task-time input{
+  font-size: 80%;
+  margin-left:20px;
+}
+
+.input-task-date input{
+  font-size: 80%;
+  margin-left:20px;
+}
+
+.input-task-limit input{
+  font-size: 80%;
+  margin-left:20px;
+}
+
+.form-submit input{
+  display:block;
+  margin:0 auto;
+  margin-bottom: 20px;
+  font-size:20px;
+  width:80px;
+}
+
+/*unfinished=============================================================================*/
+.unfinished-title{
+  width:100%;
+  height:60px;
+  padding:10px 0;
+  margin:0;
+  text-align: center;
+  font-weight: bold;
+  font-size: 50px;
+}
+
+.unfinished-task{
+  border:1px solid black;
+  border-radius: 5px;
+  background-color: #ffeeff;
+  width:60%;
+  margin:5px auto;
+  position:relative;
+}
+
+.unfinished-task-name, .unfinished-task-date, .unfinished-task-limit{
+  font-size:25px;
+  font-weight: bold;
+  padding:5px 20px;
+}
+
+.add-today{
+  position:absolute;
+  top:20%;
+  right:20px;
+  background-color:#ffdbc9;
+  border:1px solid #ff6928;
+  border-radius: 7px;
+  box-shadow: 0 2px black;
+}
+
+.add-today :hover{
+  background-color:#d2691e;
+}
+
+.add-today :active{
+  position:relative;
+  top:2px;
+  box-shadow: none;
+}
+
+.add-link{
+  text-decoration: none;
+  color:navy;
+  display: block;
+}
+
+.link-to-finish-unfinished{
+  position: absolute;
+  right:80px;
+  bottom: 20%;
+  background-color:#e6ffe9;
+  border:1px solid #2f4f4f;
+  border-radius: 7px;
+  box-shadow: 0 2px black;
+}
+
+.link-to-finish-unfinished :hover{
+  background-color: #99ff99;
+}
+
+.link-to-finish-unfinished :active{
+  position:relative;
+  top:2px;
+  box-shadow: none;
+}
+
+.finish-link-from-unfinished{
+  text-decoration: none;
+  color:red;
+  display: block;
+}
+
+.unfinished-empty{
+  width: 100%;
+  text-align: center;
+  font-size: 30px;
+  padding-top:130px;
+}
+
+/*weekly==================================================================================*/
+.weekly-title{
+  width:100%;
+  height:60px;
+  padding:10px 0;
+  margin:0;
+  text-align: center;
+  font-weight: bold;
+  font-size: 50px;
+}
+
+.weekly-plan-list{
+  margin:0 30px;
+}
+
+.weekly-plan{
+  border-bottom:1px solid black;
+  border-top:1px solid black;
+}
+
+.weekly-plan-day{
+  font-size:30px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.weekly-lists{
+  display:flex;
+  align-items: stretch;
+}
+
+.weekly-task-list{
+  width:50%;
+  border-right: 1px solid silver;
+}
+
+.weekly-event-list{
+  width:48%;
+
+  border-left: 1px solid silver;
+}
+
+.weekly-task, .weekly-event{
+  text-align: center;
+  font-size:20px;
+  font-weight: bold;
+}
+
+.weekly-task-content{
+  text-align: center;
+}
+
+.weekly-event-content{
+  width:48%;
+  display: inline-block;
+  text-align: center;
+}
+
+.weekly-event-time{
+  display: inline-block;
+  width:48%;
+  vertical-align: top;
+  text-align: center;
+}

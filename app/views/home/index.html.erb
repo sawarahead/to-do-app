@@ -1,0 +1,115 @@
+<div class="main">
+  <div class="container">
+    <h1 class="today-date"><%= @today.month.to_s %>月<%= @today.day.to_s%>日　<%= @week[@today.wday]%></h1>
+
+    <div class="link-task-memory">
+      <%= link_to("予約状況を確認する","/tasks/memory",class:"memory-link") %>
+    </div>
+
+    <% if @count > 0 %>
+    <div class="unfinished-link">
+      <%= link_to("！！未完了のtaskが#{@count}件あります！！","/tasks/unfinished",class:"unfinished-alert")%>
+    </div>
+    <%end%>
+
+    <div class="to-do-list">
+      <h2 class="list-name-to-do">To-Do-List<h2>
+        <div class="to-do-list-item">
+          <div class="task-total-time">
+            総時間：　<u><%=@total_task_time / 60%>時間<%=@total_task_time % 60%>分</u>
+          </div>
+
+          <div class="link-add-task">
+            <%= link_to("タスクの追加","/tasks/new",class:"task-add-link") %>
+          </div>
+
+          <% if @tasks.where(date:@today).count >0 %>
+          <% @tasks.each do |task| %>
+          <div class="to-do">
+            <% if !(task.limit) || task.limit - @datetime > 0 %>
+            <% if (task.repeat == 8 && task.date == @today) || (task.repeat == @today.wday && task.date <= @today) || task.repeat==7 %>
+            <div class="to-do-name">
+              <% if task.limit%>
+                <% if task.limit-@datetime >= 60*60*24%>
+                  <%= link_to(task.content,"/tasks/#{task.id}",class:"task-link") %>(<font color="red">〆切<%=((task.limit-@datetime)/(60*60*24)).to_i%>日前</font>)
+                <% else%>
+                  <%= link_to(task.content,"/tasks/#{task.id}",class:"task-link") %>(<font color="red">〆切<%=((task.limit-@datetime)/(60*60)).to_i%>時間前</font>)
+                <%end%>
+              <%else%>
+               <%= link_to(task.content,"/tasks/#{task.id}",class:"task-link") %>
+              <%end%>
+            </div>
+            <div class="task-bottom-line">
+              <div class="to-do-time">
+                目安時間：<%= task.time %>分
+              </div>
+              <div class="task-repeat-type">
+                <%= @repeat[task.repeat]%>
+              </div>
+              <div class="to-do-finish">
+                <%= link_to("終わった！","/tasks/#{task.id}/destroy",method:"post",class:"finish-link")%>
+              </div>
+            </div>
+            <%end%>
+            <%end%>
+          </div>
+          <%end%>
+          <%else%>
+            <div class="no-task">現在予定しているtaskはありません。</div>
+          <%end%>
+
+        </div>
+      </div>
+
+      <div class="event-list">
+        <h2 class="list-name-event">Event-List</h2>
+        <div class="event-list-item">
+          <div class="link-add-event">
+            <%= link_to("イベントの追加","/events/new",class:"event-add-link") %>
+          </div>
+
+          <% if @events.where(repeat:8, date:@today).count >0 || @events.where(repeat:@today.wday).count>0 || @events.where(repeat:7).count>0 %>
+          <% @events.each do |event|%>
+           <div class="event">
+            <% if (event.repeat==8 && event.date == @today) || event.repeat == @today.wday || event.repeat == 7%>
+              <div class="event-name">
+                <%= link_to(event.content,"/events/#{event.id}",class:"event-link")%>
+              </div>
+              <div class="event-time">
+                <%if event.end_time %>
+                時間：<%=event.start_time.strftime('%H:%M')%>〜<%=event.end_time.strftime('%H:%M')%>
+                <%else%>
+                時間：<%=event.start_time.strftime('%H:%M')%>〜未定
+                <%end%>
+              </div>
+              <div class="event-place">
+                <% if event.place <= 1%>
+                  場所：<%=@place[event.place]%>
+                <% elsif event.place == 2 %>
+                  <% if event.place_detail%>
+                    場所：学校　教室…<%=event.place_detail%>
+                  <% else%>
+                    場所：学校　教室…未定
+                  <%end%>
+                <% elsif event.place == 3%>
+                  <% if event.place_detail%>
+                    場所：<%=event.place_detail%>
+                  <% else%>
+                    場所：未定
+                  <%end%>
+                <%end%>
+              </div>
+              <div class="event-repeat-type">
+                <%= @repeat[event.repeat]%>
+              </div>
+            <%end%>
+           </div>
+          <%end%>
+          <%else%>
+            <div class="no-event">現在予定しているeventはありません。</div>
+          <%end%>
+
+        </div>
+      </div>
+    </div>
+  </div>

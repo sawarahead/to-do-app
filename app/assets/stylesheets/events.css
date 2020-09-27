@@ -1,0 +1,149 @@
+/*show=================================================================================*/
+.event-title{
+  width:100%;
+  height:60px;
+  padding:10px 0;
+  margin-bottom:20px;
+  text-align: center;
+  font-weight: bold;
+  font-size:50px;
+}
+
+.event-data{
+  border:1px solid black;
+  border-radius: 5px;
+  background-color: #E6FFE9;
+  width:60%;
+  margin:0 auto;
+  position:relative;
+}
+
+.event-date, .show-event-time, .show-event-place, .event-detail{
+  font-size:30px;
+  font-weight: bold;
+  padding-top:10px;
+  padding-left:20px;
+}
+
+.event-detail div{
+  padding:0 40px 0 30px;
+}
+
+.event-created-at{
+  font-size:20px;
+  font-weight: bold;
+  padding-top:30px;
+  padding-left:20px;
+}
+
+.event-updated-at{
+  font-size:20px;
+  font-weight: bold;
+  padding-top:10px;
+  padding-left:20px;
+  margin-bottom:70px;
+}
+
+.link-to-event-edit{
+  position: absolute;
+  left:30%;
+  bottom: 10px;
+}
+
+.event-edit-link{
+  text-decoration: none;
+  color:green;
+  font-size:30px;
+  background-color:rgb(230,230,255);
+  border:1px solid rgb(200,200,235);
+  border-radius: 7px;
+  padding:2px 5px;
+}
+
+.link-to-event-cancel{
+  position: absolute;
+  right:30%;
+  bottom: 10px;
+}
+
+.cancel-event-link{
+  text-decoration: none;
+  color:red;
+  font-size:30px;
+  background-color:rgb(230,230,255);
+  border:1px solid rgb(200,200,235);
+  border-radius: 7px;
+  padding:2px;
+}
+
+/*new=================================================================================*/
+
+  /*タイトル関連はtaskと共通なので省略*/
+
+/*edit================================================================================*/
+
+  /*タイトル関連はtaskと共通なので省略*/
+
+/*newとeditの共通フォーム===================================================================*/
+
+.form-error{
+  text-align: center;
+  margin:0 auto;
+  width:400px;
+  font-size:20px;
+  color:red;
+  border:1px solid rgb(255,100,100);
+  background-color: rgb(255,230,230);
+}
+
+.input-event-form{
+  border:1px solid black;
+  border-radius: 5px;
+  background-color: #ffd5ec;
+  width:60%;
+  margin:0 auto;
+}
+
+.input-event-name, .input-event-place, .input-event-date, .input-event-time, .input-event-detail, .input-event-repeat{
+  font-size:30px;
+  font-weight: bold;
+  padding-top:10px;
+  padding-left:20px;
+}
+
+.input-event-name input{
+  font-size:80%;
+  width:50%;
+  padding:0;
+  margin-left:20px;
+}
+
+.input-event-place input[type="text"]{
+  font-size:80%;
+  width:40%;
+}
+
+.input-event-date input{
+  font-size: 80%;
+  margin-left:20px;
+}
+
+.input-event-time input{
+  font-size: 80%;
+  margin-left:20px;
+}
+
+.input-event-detail textarea{
+  font-size: 80%;
+  width:90%;
+  vertical-align: top;
+  margin-left:20px;
+}
+
+.form-submit input{
+  display:block;
+  margin:0 auto;
+  margin-bottom: 20px;
+  font-size:20px;
+  width:80px;
+}

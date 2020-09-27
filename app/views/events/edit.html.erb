@@ -1,0 +1,104 @@
+<div class="main">
+  <div class="container">
+    <div class="back-show">
+      <%= link_to("←編集取り消し","/events/#{@event.id}",class:"link-show") %>
+    </div>
+
+    <h2 class="edit-title">eventの編集中...</h2>
+
+    <% @event.errors.full_messages.each do |message| %>
+      <div class="form-error">
+    <%= message %>
+      </div>
+    <%end%>
+
+    <%= form_tag("/events/#{@event.id}/update") do %>
+    <div class="input-event-form">
+      <div class="input-event-name">
+      　イベントの内容(content)：<input type="text" name="content" value="<%=@event.content%>">
+      </div>
+      <div class="input-event-place">
+        <% if @event.place <= 1%>
+          イベント会場：<%=@place[@event.place]%>（登録中）
+        <% elsif @event.place == 2 %>
+          <% if @event.place_detail%>
+        　  イベント会場：学校　教室…<%=@event.place_detail%>（登録中）
+          <% else%>
+            イベント会場：学校　教室…未定（登録中）
+          <%end%>
+        <% elsif @event.place == 3%>
+          <% if @event.place_detail%>
+            イベント会場：<%=@event.place_detail%>（登録中）
+          <% else%>
+            イベント会場：未定（登録中）
+          <%end%>
+        <%end%>
+        <% if @event.place == 1 || @event.place == 2 || (@event.place == 3 && @event.place_detail)%>
+    　　　 <div class="repeat-not-equal">！！！現在の登録と異なっています！！！</div>
+        <%end%>
+        <div>
+         <label><input type="radio" name="place" value="0" checked>未定</label>
+        </div>
+        <div>
+          <label><input type="radio" name="place" value="1">自宅</label>
+        </div>
+        <div>
+          <label><input type="radio" name="place" value="2">学校　教室：</label><input type="text" name="place_detail">
+        </div>
+        <div>
+          <label><input type="radio" name="place" value="3">その他：<label><input type="text" name="place_detail">
+        </div>
+      </div>
+      <div class="input-event-date">
+        イベントの開催日（date）：<input type="date" name="date" value="<%=@event.date%>">
+      </div>
+      <div class="input-event-time">
+        <% if @event.end_time%>
+          イベントの時間（time）：<input type="time" name="start_time" value="<%=@event.start_time.strftime('%H:%M')%>">〜<input type="time" name="end_time" value="<%=@event.end_time.strftime('%H:%M')%>">
+        <%else%>
+          イベントの時間（time）：<input type="time" name="start_time" value="<%=@event.start_time.strftime('%H:%M')%>">〜<input type="time" name="end_time">
+        <%end%>
+      </div>
+      <div class="input-event-detail">
+        詳細情報（detail）：<textarea name="detail" rows="4"><%=@event.detail%></textarea>
+      </div>
+      <div class="input-event-repeat">
+        自動繰り返し処理（repeat）：  <span class="inputed-task-repeat"><u><%= @repeat_day[@event.repeat]%>(登録中)</u></span>
+          <% if @event.repeat != 8 %>
+      　　　 <div class="repeat-not-equal">！！！現在の登録と異なっています！！！</div>
+        　<%end%>
+          <div>
+            <label><input type="radio" name="repeat" value="8" checked>なし</label>
+          </div>
+          <div>
+            <label><input type="radio" name="repeat" value="7">毎日</label>
+          </div>
+          <div>
+            <label><input type="radio" name="repeat" value="0">毎週日曜日</label>
+          </div>
+          <div>
+            <label><input type="radio" name="repeat" value="1">毎週月曜日</label>
+          </div>
+          <div>
+            <label><input type="radio" name="repeat" value="2">毎週火曜日</label>
+         </div>
+         <div>
+            <label><input type="radio" name="repeat" value="3">毎週水曜日</label>
+         </div>
+         <div>
+            <label><input type="radio" name="repeat" value="4">毎週木曜日</label>
+         </div>
+         <div>
+            <label><input type="radio" name="repeat" value="5">毎週金曜日</label>
+         </div>
+         <div>
+            <label><input type="radio" name="repeat" value="6">毎週土曜日</label>
+         </div>
+     </div>
+　　    <div class="form-submit">
+        <input type="submit" value="登録">
+       </div>
+   </div>
+　　<%end%>
+  </div>
+</div>

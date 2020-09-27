@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  content: MyText
+  place: MyText
+  start_time: 2020-09-22 18:54:27
+  end_time: 2020-09-22 18:54:27
+  detail: MyText
+  repeat: 1
+
+two:
+  content: MyText
+  place: MyText
+  start_time: 2020-09-22 18:54:27
+  end_time: 2020-09-22 18:54:27
+  detail: MyText
+  repeat: 1

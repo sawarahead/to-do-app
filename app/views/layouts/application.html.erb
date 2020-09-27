@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="refresh" content="600">
+    <title>ToDoApp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <div class="header-logo">
+         <%= link_to("ToDoApp","/home/top",class:"header-link")%>
+      </div>
+      <ul class="header-menus">
+        <li>
+          <%= link_to("今日の予定","/home/index",class:"header-link")%>
+        </li>
+        <li>
+          <%= link_to("１週間の予定","/tasks/weekly",class:"header-link")%>
+        </li>
+      </ul>
+    </header>
+
+    <% if flash[:notice]%>
+      <div class="flash">
+        <%= flash[:notice]%>
+      </div>
+    <%end%>
+
+
+    <%= yield %>
+  </body>
+</html>

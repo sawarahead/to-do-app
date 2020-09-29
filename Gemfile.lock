@@ -47,6 +47,22 @@ GEM
     archive-zip (0.12.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
+    aws-eventstream (1.1.0)
+    aws-partitions (1.376.0)
+    aws-sdk-core (3.108.0)
+      aws-eventstream (~> 1, >= 1.0.2)
+      aws-partitions (~> 1, >= 1.239.0)
+      aws-sigv4 (~> 1.1)
+      jmespath (~> 1.0)
+    aws-sdk-kms (1.38.0)
+      aws-sdk-core (~> 3, >= 3.99.0)
+      aws-sigv4 (~> 1.1)
+    aws-sdk-s3 (1.81.1)
+      aws-sdk-core (~> 3, >= 3.104.3)
+      aws-sdk-kms (~> 1)
+      aws-sigv4 (~> 1.1)
+    aws-sigv4 (1.2.2)
+      aws-eventstream (~> 1, >= 1.0.2)
     bindex (0.8.1)
     bootsnap (1.4.8)
       msgpack (~> 1.0)
@@ -83,6 +99,7 @@ GEM
     io-like (0.3.1)
     jbuilder (2.10.1)
       activesupport (>= 5.0.0)
+    jmespath (1.4.0)
     libv8 (8.4.255.0)
     line-bot-api (1.16.0)
     listen (3.1.5)
@@ -198,6 +215,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aws-sdk-s3
   bootsnap (>= 1.1.0)
   byebug
   capybara (>= 2.15)

@@ -30,7 +30,7 @@ class LinebotController < ApplicationController
       elsif event.message['text'].include?("2")
         response="あははは"
       else
-        response="oooooo"      
+        response="oooooo"
       end
     }
 
@@ -45,7 +45,6 @@ class LinebotController < ApplicationController
                 client.reply_message(event['replyToken'], message)
               end
             end
-          }
           "OK"
         end
 end

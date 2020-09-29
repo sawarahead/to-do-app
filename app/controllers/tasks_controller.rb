@@ -25,9 +25,9 @@ require "date"
       limit:params[:limit]
     )
     if @task.save
-      redirect_to("/tasks/index")
+      redirect_to("/home/index")
     else
-      render("tasks/new")
+      render("task/new")
     end
   end
 
@@ -49,7 +49,7 @@ require "date"
       @task.destroy
     end
     flash[:notice]="いい感じ！"
-    redirect_to("/tasks/index")
+    redirect_to("/home/index")
   end
 
   def delete
@@ -83,6 +83,7 @@ require "date"
     @task.time=params[:planed_time]
     @task.date=params[:date]
     @task.repeat=params[:repeat]
+    @task.limit=params[:limit]
     @task.save
     redirect_to("/tasks/#{params[:id]}")
   end
@@ -91,7 +92,6 @@ require "date"
     @today=Date.today
     @datetime=DateTime.now
     @unfinished_tasks=Task.where("date < ?",@today)
-    @unfinished_tasks_count=Task.where("date < ?",@today).count
   end
 
   def add

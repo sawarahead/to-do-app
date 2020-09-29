@@ -26,14 +26,15 @@
           <% if @tasks.where(date:@today).count >0 %>
           <% @tasks.each do |task| %>
           <div class="to-do">
-            <% if !(task.limit) || task.limit - @datetime > 0 %>
             <% if (task.repeat == 8 && task.date == @today) || (task.repeat == @today.wday && task.date <= @today) || task.repeat==7 %>
             <div class="to-do-name">
               <% if task.limit%>
                 <% if task.limit-@datetime >= 60*60*24%>
                   <%= link_to(task.content,"/tasks/#{task.id}",class:"task-link") %>(<font color="red">〆切<%=((task.limit-@datetime)/(60*60*24)).to_i%>日前</font>)
-                <% else%>
+                <% elsif task.limit-@datetime > 0%>
                   <%= link_to(task.content,"/tasks/#{task.id}",class:"task-link") %>(<font color="red">〆切<%=((task.limit-@datetime)/(60*60)).to_i%>時間前</font>)
+                <%else%>
+                <%= link_to(task.content,"/tasks/#{task.id}",class:"task-link") %>(<font color="red">期限切れ！！</font>)
                 <%end%>
               <%else%>
                <%= link_to(task.content,"/tasks/#{task.id}",class:"task-link") %>
@@ -50,7 +51,6 @@
                 <%= link_to("終わった！","/tasks/#{task.id}/destroy",method:"post",class:"finish-link")%>
               </div>
             </div>
-            <%end%>
             <%end%>
           </div>
           <%end%>

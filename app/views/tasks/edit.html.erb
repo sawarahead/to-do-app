@@ -60,7 +60,7 @@
           </div>
       </div>
       <div class="input-task-limit">
-        締め切り期限(limit)：<input type="datetime-local" name="limit" value="<%=@task.limit%>">
+        締め切り期限(limit)：<input type="datetime-local" name="limit" value="<%=@task.limit.strftime("%Y-%m-%dT%H:%M")%>">
       </div>
 　　　　<div class="form-submit">
 　　　　  <input type="submit" value="更新">

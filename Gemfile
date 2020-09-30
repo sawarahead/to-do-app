@@ -40,6 +40,7 @@ gem 'rails-i18n'
 gem 'line-bot-api'
 gem 'nokogiri'
 gem "aws-sdk-s3", require: false
+gem 'rails_12factor', group: :production
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

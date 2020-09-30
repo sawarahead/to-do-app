@@ -32,7 +32,6 @@ class LinebotController < ApplicationController
       else
         response="oooooo"
       end
-    }
 
       case event
             when Line::Bot::Event::Message
@@ -45,6 +44,7 @@ class LinebotController < ApplicationController
                 client.reply_message(event['replyToken'], message)
               end
             end
-          "OK"
-        end
+      }
+    "OK"
+  end
 end

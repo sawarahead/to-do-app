@@ -1,6 +1,7 @@
 class LinebotController < ApplicationController
 
   require "line/bot"
+  require "date"
 
   protect_from_forgery except: :sort
 
@@ -22,10 +23,11 @@ class LinebotController < ApplicationController
     end
 
     events = client.parse_events_from(body)
+    tasks = Task.all.where(date:Date.today)
 
     events.each { |event|
       if event.message['text'].include?("1")
-        response="gaggagaga"
+        response="本日のto-do-listは#{tasks.count}件残っています。"
 
       elsif event.message['text'].include?("2")
         response="あははは"

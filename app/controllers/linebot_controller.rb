@@ -27,7 +27,7 @@ class LinebotController < ApplicationController
 
     events.each { |event|
       if event.message['text'].include?("1")
-        response="本日のto-do-listは#{tasks.count}件残っています。"
+        response="本日のto-do-listは#{tasks.count}件です。\nto-doの追加等はwebサイトで行ってください。↓\n https://infinite-fjord-36648.herokuapp.com/"
 
       elsif event.message['text'].include?("2")
         response="あははは"

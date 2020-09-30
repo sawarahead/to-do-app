@@ -30,7 +30,7 @@ class LinebotController < ApplicationController
         response="本日のto-do-listは#{tasks.count}件です。\nto-doの追加等はwebサイトで行ってください。↓\n https://infinite-fjord-36648.herokuapp.com/"
 
       elsif event.message['text'].include?("2")
-        response="あははは"
+        response="本日のto-do-listです。\n#{tasks.content}"
       else
         response="oooooo"
       end

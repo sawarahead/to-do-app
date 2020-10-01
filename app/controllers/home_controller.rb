@@ -18,4 +18,8 @@ require "date"
     @place=["未定","自宅"]
   end
 
+  def line_logging
+    redirect_to("/home/index")
+  end
+
 end

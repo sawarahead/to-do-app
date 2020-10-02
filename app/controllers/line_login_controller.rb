@@ -37,13 +37,8 @@ class LineLoginController < ApplicationController
      redirect_to("/home/index")
    else
      @user_new=User.new(name:params[:name])
-     if @user_new.save
-       @user_session=User.order(created_at: :desc).limit(1)
-       session[:user_id] = @user_session.id
-       redirect_to("/home/index")
-     else
-       redirect_to("/")
-     end
+     @user_new.save
+     redirect_to("/home/index")
    end
   end
 end

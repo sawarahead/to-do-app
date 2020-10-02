@@ -26,6 +26,7 @@ class LineLoginController < ApplicationController
 
     @response=JWT.decode(JSON.parse(response.body)["id_token"],"606b3608ff10c18bc0c1d92a575d355c")
 
+    @user=User.find_by(name:@response[0]["name"])
   end
 
   def line_login
@@ -38,7 +39,7 @@ class LineLoginController < ApplicationController
    else
      @user_new=User.new(name:params[:name])
      @user_new.save
-     redirect_to("/home/index")
+     redirect_to("/")
    end
   end
 end

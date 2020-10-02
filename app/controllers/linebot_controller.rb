@@ -7,13 +7,11 @@ class LinebotController < ApplicationController
 
   def client
     @client ||= Line::Bot::Client.new { |config|
-      # ローカルで動かすだけならベタ打ちでもOK。
       config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
       config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
     }
   end
 
-  # ルーティングで設定したcallbackアクションを呼び出す
   def callback
     body = request.body.read
 

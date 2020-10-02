@@ -16,12 +16,14 @@
          <%= link_to("ToDoApp","/",class:"header-link")%>
       </div>
       <ul class="header-menus">
+        <% if session[:user_id]%>
         <li>
           <%= link_to("今日の予定","/home/index",class:"header-link")%>
         </li>
         <li>
           <%= link_to("１週間の予定","/tasks/weekly",class:"header-link")%>
         </li>
+        <%end%>
       </ul>
     </header>
 

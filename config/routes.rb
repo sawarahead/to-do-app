@@ -18,8 +18,8 @@ Rails.application.routes.draw do
   post 'events/:id/destroy' => "events#destroy"
   post 'events/:id/update' => "events#update"
 
-  post '/callback' => "linebot#callback"
-  post '/auth' => "home#line_login"
+  post 'callback' => "linebot#callback"
+  post 'auth' => "home#line_login"
 
   get 'home/index'
   get '/' => 'home#top'

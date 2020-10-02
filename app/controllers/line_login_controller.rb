@@ -4,9 +4,6 @@ class LineLoginController < ApplicationController
   require "net/http"
 
   def auth_top
-  end
-
-  def line_login
     uri=URI.parse("https://api.line.me/oauth2/v2.1/token")
     request=Net::HTTP::Post.new(uri)
     request.content_type="application/x-www-form-urlencoded"
@@ -27,6 +24,10 @@ class LineLoginController < ApplicationController
     end
 
     JWT.decode(JSON.parse(response.body)["id_token"],"#{client_secret}")
+  end
+
+  def line_login
+
 
     @user=User.find_by(name:response.name)
 

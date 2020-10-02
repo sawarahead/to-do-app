@@ -46,13 +46,13 @@ require "net/http"
 
     if @user
       session[:user_id] = @user.id
-      redirect_to("/")
+      redirect_to("/home/index")
     else
       @user_new=User.new(name:response.name)
       @user_new.save
       @user_session=User.find_by(name:response.name)
       session[:user_id] = @user_session.id
-      redirect_to("/")
+      redirect_to("/home/index")
     end
   end
 

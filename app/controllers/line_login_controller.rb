@@ -26,12 +26,6 @@ class LineLoginController < ApplicationController
 
     JWT.decode(JSON.parse(response.body)["id_token"],"606b3608ff10c18bc0c1d92a575d355c")
 
-
-
-  end
-
-  def line_login
-
     uri=URI.parse("https://api.line.me/v2/profile")
     request=Net::HTTP::Get.new(uri)
     req_options = {
@@ -42,6 +36,14 @@ class LineLoginController < ApplicationController
     end
 
     @profile=response.body
+
+
+
+  end
+
+  def line_login
+
+
 
 
   end

@@ -34,12 +34,15 @@ class LineLoginController < ApplicationController
 
     uri=URI.parse("https://api.line.me/v2/profile")
     request=Net::HTTP::Get.new(uri)
+    req_options = {
+      use_ssl: uri.scheme == "https"
+    }
     response=Net::HTTP::start(uri.hostname, uri.port) do |http|
       http.request(request)
     end
 
     @profile=response.body
 
-  
+
   end
 end

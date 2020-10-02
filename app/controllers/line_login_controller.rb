@@ -24,7 +24,7 @@ class LineLoginController < ApplicationController
       http.request(request)
     end
 
-    JWT.decode(JSON.parse(response.body)["id_token"],"#{client_secret}")
+    JWT.decode(JSON.parse(response.body)["id_token"],"606b3608ff10c18bc0c1d92a575d355c")
   end
 
   def line_login

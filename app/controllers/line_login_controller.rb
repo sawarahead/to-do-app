@@ -31,15 +31,19 @@ class LineLoginController < ApplicationController
 
   def line_login
 
-     @user=User.find_by(name:params[:name])
+   @user=User.find_by(name:params[:name])
 
    if @user
-     session[:user_id] = @user.id
-     redirect_to("/home/index")
+     session[:user_id]=@user.id
+     redirect_to("/heme/index")
    else
      @user_new=User.new(name:params[:name])
-     @user_new.save
-     redirect_to("/")
+     if @user_new.save
+       session[:user_id]=@user_new.id
+       redirect_to("/home/index")
+     else
+       redirect_to("/")
+     end
    end
   end
 end

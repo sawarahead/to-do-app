@@ -26,22 +26,6 @@ class LineLoginController < ApplicationController
 
     @response=JWT.decode(JSON.parse(response.body)["id_token"],"606b3608ff10c18bc0c1d92a575d355c")
 
-    @user=User.find_by(name:@response.name)
-
-   if @user
-     session[:user_id] = @user.id
-     redirect_to("/home/index")
-   else
-     @user_new=User.new(name:@response.name)
-     if @user_new.save
-       @user_session=User.find_by(name:@response.name)
-       session[:user_id] = @user_session.id
-       redirect_to("/home/index")
-     else
-       redirect_to("/")
-     end
-   end
-
   end
 
   def line_login

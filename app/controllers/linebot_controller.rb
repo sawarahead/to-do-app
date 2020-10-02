@@ -29,7 +29,7 @@ class LinebotController < ApplicationController
 
       elsif event.message['text'].include?("2")
         if tasks
-          response="本日のto-do-listです。\n#{tasks}"
+          response="本日のto-do-listです。\n#{tasks.select("content")}"
         else
           response="本日のto-do-listが設定されていません。"
         end

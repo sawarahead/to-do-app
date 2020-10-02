@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   post 'callback' => "linebot#callback"
   get 'auth' => "line_login#auth_top"
-  post 'line_login/:name/:picture' => "line_login#line_login"
+  post 'line_login' => "line_login#line_login"
 
   get 'home/index'
   get '/' => 'home#top'

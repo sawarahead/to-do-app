@@ -1,7 +1,7 @@
 class LineLoginController < ApplicationController
 
   require "uri"
-  require "net/http"
+  require "net/https"
 
   def auth_top
     uri=URI.parse("https://api.line.me/oauth2/v2.1/token")

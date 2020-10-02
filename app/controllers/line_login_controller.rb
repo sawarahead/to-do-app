@@ -26,17 +26,6 @@ class LineLoginController < ApplicationController
 
     @response=JWT.decode(JSON.parse(response.body)["id_token"],"606b3608ff10c18bc0c1d92a575d355c")
 
-    uri=URI.parse("https://api.line.me/v2/profile")
-    request=Net::HTTP::Get.new(uri)
-    request["Authorization"]="Bearer {access token}"
-    req_options = {
-      use_ssl: uri.scheme == "https"
-    }
-    response=Net::HTTP::start(uri.hostname, uri.port ,req_options) do |http|
-      http.request(request)
-    end
-
-
 
   end
 

@@ -28,8 +28,8 @@ class LineLoginController < ApplicationController
 
 
     profile_uri=URI.parse("https://api.line.me/v2/profile")
-    profile_request=Net::HTTP::Get.new(uri)
-    profile_response=Net::HTTP::start(uri.hostname, uri.port) do |http|
+    profile_request=Net::HTTP::Get.new(profile_uri)
+    profile_response=Net::HTTP::start(profile_uri.hostname, profile_uri.port) do |http|
       http.request(profile_request)
     end
 

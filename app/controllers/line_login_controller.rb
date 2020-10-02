@@ -37,7 +37,7 @@ class LineLoginController < ApplicationController
     req_options = {
       use_ssl: uri.scheme == "https"
     }
-    response=Net::HTTP::start(uri.hostname, uri.port) do |http|
+    response=Net::HTTP::start(uri.hostname, uri.port ,req_options) do |http|
       http.request(request)
     end
 

@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   post 'events/:id/update' => "events#update"
 
   post 'callback' => "linebot#callback"
+  get 'auth' => "line_login#auth_top"
   post 'auth' => "line_login#line_login"
 
   get 'home/index'

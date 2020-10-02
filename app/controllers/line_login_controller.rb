@@ -3,6 +3,9 @@ class LineLoginController < ApplicationController
   require "uri"
   require "net/http"
 
+  def auth_top
+  end
+
   def line_login
     uri=URI.parse("https://api.line.me/oauth2/v2.1/token")
     request=Net::HTTP::Post.new(uri)

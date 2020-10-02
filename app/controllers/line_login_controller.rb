@@ -27,23 +27,19 @@ class LineLoginController < ApplicationController
     JWT.decode(JSON.parse(response.body)["id_token"],"606b3608ff10c18bc0c1d92a575d355c")
 
 
-    
+
   end
 
   def line_login
 
-
-    @user=User.find_by(name:response.name)
-
-    if @user
-      session[:user_id] = @user.id
-      redirect_to("/home/index")
-    else
-      @user_new=User.new(name:response.name)
-      @user_new.save
-      @user_session=User.find_by(name:response.name)
-      session[:user_id] = @user_session.id
-      redirect_to("/home/index")
+    uri=URI.parse("https://api.line.me/v2/profile")
+    request=Net::HTTP::Get.new(uri)
+    response=Net::HTTP::start(uri.hostname, uri.port) do |http|
+      http.request(request)
     end
+
+    @profile=response.body
+
+  
   end
 end

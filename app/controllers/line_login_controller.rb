@@ -28,7 +28,7 @@ class LineLoginController < ApplicationController
 
     uri=URI.parse("https://api.line.me/v2/profile")
     request=Net::HTTP::Get.new(uri)
-    request.authorization="Bearer {access token}"
+    request["Authorization"]="Bearer {access token}"
     req_options = {
       use_ssl: uri.scheme == "https"
     }

@@ -14,7 +14,7 @@ end
 
 def forbid_user
   if @current_user
-    redirect("/home/index")
+    redirect_to("/home/index")
   end
 end
 

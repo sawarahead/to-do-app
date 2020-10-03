@@ -5,7 +5,7 @@ class LineLoginController < ApplicationController
   require "jwt"
 
   before_action :authenticate_user
-  before_action :forbid_user,{only:[:line_login]}
+  before_action :forbid_user
 
   def auth_top
     uri=URI.parse("https://api.line.me/oauth2/v2.1/token")

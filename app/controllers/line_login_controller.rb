@@ -4,7 +4,6 @@ class LineLoginController < ApplicationController
   require "net/http"
   require "jwt"
 
-  before_action :authenticate_user
   before_action :forbid_user
 
   def auth_top

@@ -37,7 +37,7 @@ class LineLoginController < ApplicationController
 
    if @user
      session[:user_id]=@user.id
-     redirect_to("/heme/index")
+     redirect_to("/home/index")
    else
      @user_new=User.new(name:params[:name],picture:params[:picture])
      if @user_new.save

@@ -4,6 +4,9 @@ class LineLoginController < ApplicationController
   require "net/http"
   require "jwt"
 
+  before_action :authenticate_user
+  before_action :forbid_user,{only:[:line_login]}
+
   def auth_top
     uri=URI.parse("https://api.line.me/oauth2/v2.1/token")
     request=Net::HTTP::Post.new(uri)
@@ -31,13 +34,13 @@ class LineLoginController < ApplicationController
 
   def line_login
 
-   @user=User.find_by(name:params[:name])
+   @user=User.find_by(name:params[:name],picture:params[:picture])
 
    if @user
      session[:user_id]=@user.id
      redirect_to("/heme/index")
    else
-     @user_new=User.new(name:params[:name])
+     @user_new=User.new(name:params[:name],picture:params[:picture])
      if @user_new.save
        session[:user_id]=@user_new.id
        redirect_to("/home/index")

@@ -2,12 +2,21 @@ class TasksController < ApplicationController
 
 require "date"
 
+before_action :authenticate_user
+before_action :nsure_correct_user,{only:[:show,:edit,:update,:destroy,:delete,:add]}
+
+  def ensure_correct_user
+    @task=Task.find_by(id: params[:id])
+    if @task.id!=@current_user.id
+      redirect_to("/")
+    end
+  end
 
   def weekly
     @week=["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日","日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"]
     @today=Date.today
-    @tasks=Task.all
-    @events=Event.all.order(:start_time)
+    @tasks=Task.where(user_id: @current_user.id)
+    @events=Event.where(user_id: @current_user.id).order(:start_time)
   end
 
   def new
@@ -22,7 +31,8 @@ require "date"
       time:params[:planed_time],
       date:params[:date],
       repeat:params[:repeat],
-      limit:params[:limit]
+      limit:params[:limit],
+      user_id:@current_user.id
     )
     if @task.save
       redirect_to("/home/index")
@@ -64,8 +74,8 @@ require "date"
   end
 
   def memory
-    @tasks=Task.all
-    @events=Event.all
+    @tasks=Task.where(user_id: @current_user.id)
+    @events=Event.where(user_id: @current_user.id)
     @today=Date.today
     @datetime=DateTime.now
     @week=["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"]
@@ -91,7 +101,7 @@ require "date"
   def unfinished
     @today=Date.today
     @datetime=DateTime.now
-    @unfinished_tasks=Task.where("date < ?",@today)
+    @unfinished_tasks=Task.where("date < ?",@today).where(user_id: @current_user.id)
   end
 
   def add

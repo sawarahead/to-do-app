@@ -12,7 +12,7 @@ def authenticate_user
   end
 end
 
-def forbid_login_user
+def forbid_user
   if @current_user
     redirect("/home/index")
   end

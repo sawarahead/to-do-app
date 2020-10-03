@@ -2,6 +2,16 @@ class EventsController < ApplicationController
 
   require "date"
 
+  before_action :authenticate_user
+  before_action :nsure_correct_user,{only:[:show,:edit,:destroy,:update]}
+
+    def ensure_correct_user
+      @event=Event.find_by(id: params[:id])
+      if @event.id!=@current_user.id
+        redirect_to("/")
+       end
+    end
+
   def new
     @today=Date.today
     @event=Event.new
@@ -16,7 +26,8 @@ class EventsController < ApplicationController
       start_time:params[:start_time],
       end_time:params[:end_time],
       detail:params[:detail],
-      repeat:params[:repeat]
+      repeat:params[:repeat],
+      user_id:@current_user.id
     )
     if @event.save
       redirect_to("/home/index")

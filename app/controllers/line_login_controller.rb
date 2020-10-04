@@ -26,11 +26,11 @@ class LineLoginController < ApplicationController
       http.request(request)
     end
 
-    @@response=JWT.decode(JSON.parse(response.body)["id_token"],"606b3608ff10c18bc0c1d92a575d355c")
+    @response=JWT.decode(JSON.parse(response.body)["id_token"],"606b3608ff10c18bc0c1d92a575d355c")
 
   def auth_top
 
-    @user=User.find_by(name:@@response[0]["name"])
+    @user=User.find_by(name:@response[0]["name"])
   end
 
   def line_login

@@ -20,7 +20,7 @@
   </div>
   <%else%>
   <div class="start-btn">
-    <%= link_to("ユーザー情報を登録","/line_login?code=#{params[:code]}",method:"post",class:"top-link") %>
+    <%= link_to("ユーザー情報を登録","/line_login?code=#{params[:code]}&state=#{params[:state]",method:"post",class:"top-link") %>
   </div>
 
   <div class="click-message">

@@ -26,20 +26,20 @@ class LineLoginController < ApplicationController
       http.request(request)
     end
 
-    @@response=JWT.decode(JSON.parse(response.body)["id_token"],"606b3608ff10c18bc0c1d92a575d355c")
+    @response=JWT.decode(JSON.parse(response.body)["id_token"],"606b3608ff10c18bc0c1d92a575d355c")
 
     @user=User.find_by(name:@response[0]["name"])
   end
 
   def line_login
 
-   @user=User.find_by(name:@@response[0]["name"],picture:@@response[0]["picture"])
+   @user=User.find_by(name:"小山",picture:"")
 
    if @user
      session[:user_id]=@user.id
      redirect_to("/home/index")
    else
-     @user_new=User.new(name:@@response[0]["name"],picture:@@response[0]["picture"])
+     @user_new=User.new(name:"小山",picture:"")
      if @user_new.save
        session[:user_id]=@user_new.id
        redirect_to("/home/index")

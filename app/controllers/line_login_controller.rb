@@ -43,6 +43,7 @@ class LineLoginController < ApplicationController
      if @user_new.save
        session[:user_id]=@user_new.id
        redirect_to("/home/index")
+        flash[:notice]=@response[0]["name"]
      else
        redirect_to("/")
      end

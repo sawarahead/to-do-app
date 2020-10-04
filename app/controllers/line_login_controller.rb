@@ -24,23 +24,25 @@ class LineLoginController < ApplicationController
       use_ssl: uri.scheme == "https"
     }
 
-    response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+    @response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
       http.request(request)
     end
 
-    @response=JWT.decode(JSON.parse(response.body)["id_token"],"606b3608ff10c18bc0c1d92a575d355c")
+    @top_response=JWT.decode(JSON.parse(@response.body)["id_token"],"606b3608ff10c18bc0c1d92a575d355c")
 
     @user=User.find_by(name:@response[0]["name"])
   end
 
   def line_login
-   @user=User.find_by(name:@response[0]["name"],picture:@response[0]["picture"])
+   @login_response=JWT.decode(JSON.parse(@response.body)["id_token"],"606b3608ff10c18bc0c1d92a575d355c")
+   
+   @user=User.find_by(name:@login_response[0]["name"],picture:@login_response[0]["picture"])
 
    if @user
      session[:user_id]=@user.id
      redirect_to("/home/index")
    else
-     @user_new=User.new(name:@response[0]["name"],picture:@response[0]["picture"])
+     @user_new=User.new(name:@login_response[0]["name"],picture:@login_response[0]["picture"])
      if @user_new.save
        session[:user_id]=@user_new.id
        redirect_to("/home/index")

@@ -6,7 +6,7 @@ class LineLoginController < ApplicationController
 
   before_action :forbid_user
 
-  def auth_top
+  if params[:code]
     uri=URI.parse("https://api.line.me/oauth2/v2.1/token")
     request=Net::HTTP::Post.new(uri)
     request.content_type="application/x-www-form-urlencoded"
@@ -22,26 +22,26 @@ class LineLoginController < ApplicationController
       use_ssl: uri.scheme == "https"
     }
 
-    @response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
+    response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
       http.request(request)
     end
 
-    @top_response=JWT.decode(JSON.parse(@response.body)["id_token"],"606b3608ff10c18bc0c1d92a575d355c")
+    @response=JWT.decode(JSON.parse(@response.body)["id_token"],"606b3608ff10c18bc0c1d92a575d355c")
 
+  end
 
-    @user=User.find_by(name:@top_response[0]["name"])
+  def top_auth
+    @user=User.find_by(name:@response[0]["name"])
   end
 
   def line_login
-   @login_response=JWT.decode(JSON.parse(@response.body)["id_token"],"606b3608ff10c18bc0c1d92a575d355c")
-
-   @user=User.find_by(name:@login_response[0]["name"],picture:@login_response[0]["picture"])
+   @user=User.find_by(name:@response[0]["name"],picture:@response[0]["picture"])
 
    if @user
      session[:user_id]=@user.id
      redirect_to("/home/index")
    else
-     @user_new=User.new(name:@login_response[0]["name"],picture:@login_response[0]["picture"])
+     @user_new=User.new(name:@response[0]["name"],picture:@response[0]["picture"])
      if @user_new.save
        session[:user_id]=@user_new.id
        redirect_to("/home/index")

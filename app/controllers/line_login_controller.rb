@@ -6,9 +6,7 @@ class LineLoginController < ApplicationController
 
   before_action :forbid_user
 
-
   def auth_top
-
     uri=URI.parse("https://api.line.me/oauth2/v2.1/token")
     request=Net::HTTP::Post.new(uri)
     request.content_type="application/x-www-form-urlencoded"
@@ -30,12 +28,13 @@ class LineLoginController < ApplicationController
 
     @top_response=JWT.decode(JSON.parse(@response.body)["id_token"],"606b3608ff10c18bc0c1d92a575d355c")
 
-    @user=User.find_by(name:@response[0]["name"])
+
+    @user=User.find_by(name:@top_response[0]["name"])
   end
 
   def line_login
    @login_response=JWT.decode(JSON.parse(@response.body)["id_token"],"606b3608ff10c18bc0c1d92a575d355c")
-   
+
    @user=User.find_by(name:@login_response[0]["name"],picture:@login_response[0]["picture"])
 
    if @user

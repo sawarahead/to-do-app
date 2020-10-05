@@ -4,11 +4,11 @@
     <p>日々の予定を記録し、より効率的で快適な生活を</p>
   </div>
 
-  <img name="picture" src="<%=@response[0]["picture"]%>" height="100" width="100">
+  <img src="<%=@response[0]["picture"]%>" height="100" width="100">
 
-  <div name="name">
-    <%=@response[0]["name"]%>
-  </div>
+  <input name="picture" value="<%=@response[0]["picture"]%>">
+
+  <input name="name" value="<%=@response[0]["name"]%>">
 
   <% if @user%>
   <div class="start-btn">

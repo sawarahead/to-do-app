@@ -4,20 +4,22 @@
     <p>日々の予定を記録し、より効率的で快適な生活を</p>
   </div>
 
+  <div class="line_user">ユーザーの写真</div>
   <img src="<%=@response[0]["picture"]%>" height="100" width="100">
 
-  <div>
-    <input name="picture" value="<%=@response[0]["picture"]%>">
-  </div>
-
+  <div class="line_user">ユーザー名</div>
   <div>
     <input name="name" value="<%=@response[0]["name"]%>">
   </div>
 
+  <div class="line_user">ユーザーパスワード</div>
   <div>
     <input type="password" name="password">
   </div>
-  <div>※必ずパスワードを登録してください。</div>
+  <div>
+    ※必ずパスワードを登録してください。
+    ※パスワードは忘れず保管してください。
+  </div>
 
   <% if @user%>
   <div class="start-btn">

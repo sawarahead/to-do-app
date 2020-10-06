@@ -7,7 +7,7 @@ before_action :ensure_correct_user,{only:[:show,:edit,:update,:destroy,:delete,:
 
   def ensure_correct_user
     @task=Task.find_by(id: params[:id])
-    if @task.id!=@current_user.id
+    if @task.user_id!=@current_user.id
       redirect_to("/")
     end
   end

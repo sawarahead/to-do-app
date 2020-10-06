@@ -6,9 +6,18 @@
 
   <img src="<%=@response[0]["picture"]%>" height="100" width="100">
 
-  <input name="picture" value="<%=@response[0]["picture"]%>">
+  <div>
+    <input name="picture" value="<%=@response[0]["picture"]%>">
+  </div>
 
-  <input name="name" value="<%=@response[0]["name"]%>">
+  <div>
+    <input name="name" value="<%=@response[0]["name"]%>">
+  </div>
+
+  <div>
+    <input type="password" name="password">
+  </div>
+  <div>※必ずパスワードを登録してください。</div>
 
   <% if @user%>
   <div class="start-btn">

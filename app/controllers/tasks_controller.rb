@@ -3,7 +3,7 @@ class TasksController < ApplicationController
 require "date"
 
 before_action :authenticate_user
-before_action :nsure_correct_user,{only:[:show,:edit,:update,:destroy,:delete,:add]}
+before_action :ensure_correct_user,{only:[:show,:edit,:update,:destroy,:delete,:add]}
 
   def ensure_correct_user
     @task=Task.find_by(id: params[:id])

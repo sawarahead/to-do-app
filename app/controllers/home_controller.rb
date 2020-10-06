@@ -21,4 +21,7 @@ require "date"
     @place=["未定","自宅"]
   end
 
+  def signup
+  end
+
 end

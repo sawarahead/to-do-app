@@ -5,18 +5,18 @@
   </div>
 
   <%= form_tag("/line_signup",{multipart: true}) do%>
-  <div class="line_user">ユーザーの写真</div>
+  <div class="user-picture">ユーザーの写真</div>
   <img src="<%=@response[0]["picture"]%>" height="100" width="100">
   <div>
     <input name="picture" value="<%=@response[0]["picture"]%>">
   </div>
 
-  <div class="line_user">ユーザー名</div>
+  <div class="user-name">ユーザー名</div>
   <div>
     <input name="name" value="<%=@response[0]["name"]%>">
   </div>
 
-  <div class="line_user">ユーザーパスワード</div>
+  <div class="user-password">ユーザーパスワード</div>
   <div>
     <input type="password" name="password">
   </div>

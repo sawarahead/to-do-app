@@ -58,7 +58,6 @@ before_action :ensure_correct_user,{only:[:show,:edit,:update,:destroy,:delete,:
     else
       @task.destroy
     end
-    flash[:notice]="いい感じ！"
     redirect_to("/home/index")
   end
 

@@ -6,7 +6,7 @@ class LineLoginController < ApplicationController
 
   before_action :forbid_user
 
-  def top_auth
+  def auth_top
     uri=URI.parse("https://api.line.me/oauth2/v2.1/token")
     request=Net::HTTP::Post.new(uri)
     request.content_type="application/x-www-form-urlencoded"

@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   get 'signup' => "home#signup"
   get 'normal' => "home#normal"
   get 'home/login'
-  post 'home/login_check' 
+  post 'home/login_check'
   post 'normal_signup' => "home#normal_signup"
   post 'line_signup' => "line_login#line_signup"
   post 'logout' => "users#logout"

@@ -44,6 +44,9 @@ require "date"
    end
   end
 
+  def login
+  end
+
   def login_check
     @user=User.find_by(name:params[:name],password:params[:password])
 

@@ -1,0 +1,28 @@
+<div class="main top-main">
+  <div class="top-message">
+    <h1>Search your deta!</h1>
+    <p>ユーザー名、パスワードを入力してください。</p>
+  </div>
+
+  <%= form_tag("/home/login_check") do%>
+  <div class="line_user">ユーザー名</div>
+  <div>
+    <input name="name">
+  </div>
+
+  <div class="line_user">ユーザーパスワード</div>
+  <div>
+    <input type="password" name="password">
+  </div>
+
+  <div class="login-submit">
+    <input type="submit" value="To_Do_Appを始める">
+  </div>
+  <%end%>
+
+  <div class="click-message">
+    ↑　↑　↑　↑　クリック　↑　↑　↑　↑
+  </div>
+  <%end%>
+
+</div>

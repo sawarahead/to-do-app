@@ -1,16 +1,10 @@
 <div class="main top-main">
   <div class="top-message">
-    <h1>Check your deta!</h1>
+    <h1>Sign your deta!</h1>
     <p>ユーザー情報を確認し、パスワードを設定してください。</p>
   </div>
 
-  <%= form_tag("/line_signup",{multipart: true}) do%>
-  <div class="line_user">ユーザーの写真</div>
-  <img src="<%=@response[0]["picture"]%>" height="100" width="100">
-  <div>
-    <input name="picture" value="<%=@response[0]["picture"]%>">
-  </div>
-
+  <%= form_tag("/normal_signup") do%>
   <div class="line_user">ユーザー名</div>
   <div>
     <input name="name" value="<%=@response[0]["name"]%>">

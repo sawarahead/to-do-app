@@ -20,8 +20,12 @@ Rails.application.routes.draw do
 
   post 'callback' => "linebot#callback"
   get 'auth' => "line_login#auth_top"
-  get 'signup' => "home#signup" 
-  post 'line_login' => "line_login#line_login"
+  get 'signup' => "home#signup"
+  get 'normal' => "home#normal"
+  get 'home/login'
+  post 'home/login_check' 
+  post 'normal_signup' => "home#normal_signup"
+  post 'line_signup' => "line_login#line_signup"
   post 'logout' => "users#logout"
 
   get 'home/index'

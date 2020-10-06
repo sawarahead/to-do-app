@@ -24,4 +24,36 @@ require "date"
   def signup
   end
 
+  def normal
+  end
+
+  def normal_signup
+   @user=User.find_by(name:params[:name],password:params[:password])
+
+   if @user
+     flash[:notice]="既に登録済みのユーザーです。"
+     render("home/normal")
+   else
+     @user_new=User.new(name:params[:name],password:params[:password])
+     if @user_new.save
+       session[:user_id]=@user_new.id
+       redirect_to("/home/index")
+     else
+       redirect_to("/")
+     end
+   end
+  end
+
+  def login_check
+    @user=User.find_by(name:params[:name],password:params[:password])
+
+    if @user
+      session[:user_id]=@user.id
+      redirect_to("/home/index")
+    else
+      flash[:notice]="該当するユーザーが見つかりません。"
+      render("home/login")
+    end
+  end
+
 end

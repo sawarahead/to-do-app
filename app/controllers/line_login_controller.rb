@@ -31,14 +31,14 @@ class LineLoginController < ApplicationController
     @user=User.find_by(name:@response[0]["name"])
   end
 
-  def line_login
+  def line_signup
    @user=User.find_by(name:params[:name],password:params[:password])
 
    if @user
-     session[:user_id]=@user.id
-     redirect_to("/home/index")
+     flash[:notice]="既に登録済みのユーザーです。"
+     render("line_login/auth_top")
    else
-     @user_new=User.new(name:params[:name],password:params[:password])
+     @user_new=User.new(name:params[:name],password:params[:password],picture:params[:picture])
      if @user_new.save
        session[:user_id]=@user_new.id
        redirect_to("/home/index")

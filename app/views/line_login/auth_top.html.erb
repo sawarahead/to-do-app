@@ -4,6 +4,7 @@
     <p>日々の予定を記録し、より効率的で快適な生活を</p>
   </div>
 
+  <% form_tag("/line_login",{multipart: true}) do%>
   <div class="line_user">ユーザーの写真</div>
   <img src="<%=@response[0]["picture"]%>" height="100" width="100">
 
@@ -20,6 +21,7 @@
     ※必ずパスワードを登録してください。
     ※パスワードは忘れず保管してください。
   </div>
+  <%end%>
 
   <% if @user%>
   <div class="start-btn">

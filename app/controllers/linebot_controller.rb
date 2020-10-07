@@ -21,7 +21,7 @@ class LinebotController < ApplicationController
     end
 
     events = client.parse_events_from(body)
-    tasks = Task.all.where(date:Date.today)
+    tasks = Task.where(date:Date.today)
 
     events.each { |event|
       if event.message['text'].include?("1")
@@ -29,7 +29,7 @@ class LinebotController < ApplicationController
 
       elsif event.message['text'].include?("2")
         if tasks
-          response="本日のto-do-listです。\n#{tasks.select("content")}"
+          response="本日のto-do-listです。\n#{tasks}"
         else
           response="本日のto-do-listが設定されていません。"
         end

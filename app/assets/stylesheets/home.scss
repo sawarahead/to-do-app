@@ -135,7 +135,8 @@ header{
 .flash{
   position:absolute;
   top: 100px;
-  text-align: center;
+  left:50%;
+  transform:translateX(-50%);
   font-size: 30px;
   padding: 20px 0;
   color:red;

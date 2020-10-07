@@ -32,7 +32,7 @@ header{
 .header-menus{
   position:absolute;
   right:0;
-  width:74%;
+  width:67%;
   font-size:30px;
 }
 
@@ -40,6 +40,7 @@ header{
   text-align: center;
   width:20%;
   margin-right:20px;
+  margin-top: 20px;
   height:40px;
   background-color: green;
   border:1px solid black;
@@ -69,6 +70,8 @@ header{
 }
 
 .header-user-name{
+  position:absolute;
+  right:160px;
   font-size:20px;
   width:19%;
   text-align: right;
@@ -76,10 +79,11 @@ header{
 }
 
 .logout{
+  position:absolute;
+  right:20px;
   font-size:20px;
-  width:10%;
+  width:130px;
   line-height:80px;
-  border:1px solid black;
 }
 
 .logout-link{

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_06_033255) do
+ActiveRecord::Schema.define(version: 2020_10_07_055151) do
 
   create_table "events", force: :cascade do |t|
     t.text "content"
@@ -24,6 +24,11 @@ ActiveRecord::Schema.define(version: 2020_10_06_033255) do
     t.date "date"
     t.string "place_detail"
     t.integer "user_id"
+  end
+
+  create_table "homes", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -43,7 +48,7 @@ ActiveRecord::Schema.define(version: 2020_10_06_033255) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "picture"
-    t.string "password"
+    t.string "password_digest"
   end
 
 end

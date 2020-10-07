@@ -48,9 +48,9 @@ require "date"
   end
 
   def login_check
-    @user=User.find_by(name:params[:name],password:params[:password])
+    @user=User.find_by(name:params[:name])
 
-    if @user
+    if @user && @user.authenticate(params[:password])
       session[:user_id]=@user.id
       redirect_to("/home/index")
     else

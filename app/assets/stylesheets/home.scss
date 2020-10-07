@@ -41,6 +41,7 @@ header{
   text-align: center;
   width:30%;
   height:60px;
+  padding:0;
   background-color: green;
   border:1px solid black;
   border-radius: 7px;
@@ -71,7 +72,13 @@ header{
   font-weight: bold;
 }
 
-.logout, .header-user-name{
+.header-user-name{
+  font-size:20px;
+  width:19%;
+  text-align: right;
+}
+
+.logout{
   font-size:20px;
   width:19%;
 }

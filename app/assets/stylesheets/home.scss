@@ -34,7 +34,6 @@ header{
   right:0;
   width:74%;
   font-size:30px;
-  line-height:80px;
 }
 
 .header-item{
@@ -46,10 +45,7 @@ header{
   border:1px solid black;
   border-radius: 7px;
   box-shadow: 0 3px black;
-}
-
-.header-item :hover{
-  background-color: #006633;
+  line-height:40px;
 }
 
 .header-item :active{
@@ -76,11 +72,14 @@ header{
   font-size:20px;
   width:19%;
   text-align: right;
+  line-height:80px;
 }
 
 .logout{
   font-size:20px;
   width:10%;
+  line-height:80px;
+  border:1px solid black;
 }
 
 .logout-link{

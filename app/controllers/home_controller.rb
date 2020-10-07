@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
 
 require "date"
+require "bcript"
 
   before_action :authenticate_user,{only:[:index]}
 

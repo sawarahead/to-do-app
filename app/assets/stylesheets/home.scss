@@ -31,15 +31,17 @@ header{
 
 .header-menus{
   margin-top:0;
+  height:60px;
   float:right;
   font-size:30px;
-  line-height:80px;
+  line-height:60px;
 }
 
 .header-item{
   float:left;
+  text-align: center;
   margin-right:150px;
-  background-color: black;
+  background-color: green;
   border:1px solid black;
   border-radius: 7px;
   box-shadow: 0 3px black;

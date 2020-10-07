@@ -22,26 +22,24 @@ header{
 }
 
 .header-logo{
-  float:left;
-  width:200px;
-  padding-left:20px;
+  position:absolute;
+  left:20px;
+  width:25%;
   font-size:40px;
   line-height:80px;
 }
 
 .header-menus{
-  margin-top:0;
-  padding:0;
+  position:absolute;
+  right:0;
   height:60px;
-  float:right;
   font-size:30px;
   line-height:60px;
 }
 
 .header-item{
-  float:left;
   text-align: center;
-  margin-right:150px;
+  width:30%;
   background-color: green;
   border:1px solid black;
   border-radius: 7px;
@@ -74,6 +72,7 @@ header{
 
 .logout, .user-name{
   font-size:20px;
+  width:20%;
 }
 
 .logout-link{

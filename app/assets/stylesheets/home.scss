@@ -39,9 +39,9 @@ header{
 
 .header-item{
   text-align: center;
-  width:25%;
+  width:20%;
+  margin-right:20px;
   height:40px;
-  margin-top:20px;
   background-color: green;
   border:1px solid black;
   border-radius: 7px;
@@ -52,7 +52,7 @@ header{
   background-color: #006633;
 }
 
-.header-otem :active{
+.header-item :active{
   position:relative;
   top:3px;
   box-shadow: none;

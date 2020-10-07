@@ -39,16 +39,34 @@ header{
 .header-item{
   float:left;
   margin-right:150px;
+  background-color: black;
+  border:1px solid black;
+  border-radius: 7px;
+  box-shadow: 0 3px black;
+}
+
+.header-item :hover{
+  background-color: #006633;
+}
+
+.header-otem :active{
+  position:relative;
+  top:3px;
+  box-shadow: none;
 }
 
 .header-link-today{
   text-decoration: none;
   color: #ffff44;
+  display:block;
+  font-weight: bold;
 }
 
 .header-link-weekly{
   text-decoration: none;
   color: #44ffff;
+  display:block;
+  font-weight: bold;
 }
 
 .logout, .user-name{

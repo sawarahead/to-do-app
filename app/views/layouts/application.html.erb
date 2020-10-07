@@ -18,16 +18,16 @@
       <ul class="header-menus">
         <% if session[:user_id]%>
         <li class="header-item">
-          <%= link_to("今日の予定","/home/index",class:"header-link")%>
+          <%= link_to("今日の予定","/home/index",class:"header-link-today")%>
         </li>
         <li class="header-item">
-          <%= link_to("１週間の予定","/tasks/weekly",class:"header-link")%>
+          <%= link_to("１週間の予定","/tasks/weekly",class:"header-link-weekly")%>
         </li>
         <li class="user-name">
           <%=@current_user.name%>：
         </li>
         <li class="logout">
-          <%= link_to("ログアウト","/logout",method:"post",class:"header-link")%>
+          <%= link_to("ログアウト","/logout",method:"post",class:"logout-link")%>
         </li>
         <%end%>
       </ul>

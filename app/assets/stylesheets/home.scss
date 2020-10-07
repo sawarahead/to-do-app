@@ -41,17 +41,23 @@ header{
   margin-right:150px;
 }
 
-.header-link{
+.header-link-today{
   text-decoration: none;
-  color: white;
+  color: #ffff44;
+}
+
+.header-link-weekly{
+  text-decoration: none;
+  color: #44ffff;
 }
 
 .logout, .user-name{
   font-size:20px;
 }
 
-.logout{
-  color:maroon;
+.logout-link{
+  text-decoration: none;
+  color: #ff3333;
 }
 
 /*トップページ*/

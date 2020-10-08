@@ -3,7 +3,7 @@ class EventsController < ApplicationController
   require "date"
 
   before_action :authenticate_user
-  before_action :nsure_correct_user,{only:[:show,:edit,:destroy,:update]}
+  before_action :ensure_correct_user,{only:[:show,:edit,:destroy,:update]}
 
     def ensure_correct_user
       @event=Event.find_by(id: params[:id])

@@ -111,5 +111,21 @@
 
         </div>
       </div>
+
+      <div class="achievement-rate">
+        <div class="today-achievement">
+          <div class="today-achievement-rate">
+            本日のタスク達成率：<%=@today_all_task.count/@today_all_task.where(check:1).count*100%>%
+          </div>
+          <div class="today-task-count">
+            本日の登録タスク数：<%=@today_all_task.count%>個
+          </div>
+          <div class="today-finish-task-count">
+            本日の終了済みタスク数：<%=@today_all_task.where(check:1).count%>個
+          </div>
+        </div>
+        <div class="weekly-achievement">
+        </div>
+      </div>
     </div>
   </div>

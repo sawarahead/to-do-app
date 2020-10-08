@@ -26,7 +26,7 @@
           <% if @tasks.where(date:@today).count >0 %>
           <% @tasks.each do |task| %>
           <div class="to-do">
-            <% if (task.repeat == 8 && task.date == @today) || (task.repeat == @today.wday && task.date <= @today) || task.repeat==7 %>
+            <% if ((task.repeat == 8 || task.repeat == 7) && task.date == @today) || (task.repeat == @today.wday && task.date <= @today) %>
             <div class="to-do-name">
               <% if task.limit%>
                 <% if task.limit-@datetime >= 60*60*24%>

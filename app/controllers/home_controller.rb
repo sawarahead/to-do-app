@@ -15,7 +15,7 @@ require "date"
     @today=Date.today
     @datetime=DateTime.now
     @tasks=Task.where(user_id: @current_user.id).where(check:0)
-    @count=Task.where("date < ?",@today).where(user_id: @current_user.id).count
+    @count=Task.where("date < ?",@today).where(user_id: @current_user.id).where(check:0).count
     @events=Event.where(user_id: @current_user.id).order(:start_time)
     @repeat=["日","月","火","水","木","金","土","毎","単"]
     @total_task_time=Task.where("date=?",@today).where(user_id: @current_user.id).where(check:0).sum(:time)

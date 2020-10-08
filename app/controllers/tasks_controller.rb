@@ -15,7 +15,7 @@ before_action :ensure_correct_user,{only:[:show,:edit,:update,:destroy,:delete,:
   def weekly
     @week=["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日","日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"]
     @today=Date.today
-    @tasks=Task.where(user_id: @current_user.id)
+    @tasks=Task.where(user_id: @current_user.id).where(check:0)
     @events=Event.where(user_id: @current_user.id).order(:start_time)
   end
 
@@ -32,7 +32,8 @@ before_action :ensure_correct_user,{only:[:show,:edit,:update,:destroy,:delete,:
       date:params[:date],
       repeat:params[:repeat],
       limit:params[:limit],
-      user_id:@current_user.id
+      user_id:@current_user.id,
+      check:0
     )
     if @task.save
       redirect_to("/home/index")
@@ -49,16 +50,20 @@ before_action :ensure_correct_user,{only:[:show,:edit,:update,:destroy,:delete,:
       if @task.repeat == 7
         @task_copy.date = @today + 1
         @task_copy.save
-        @task.destroy
+        @task.check = 1
+        @task.save
       else
         @task_copy.date = @today + 7
         @task_copy.save
-        @task.destroy
+        @task.check = 1
+        @task.save
       end
     else
-      @task.destroy
+      @task.check = 1
+      @task.save
     end
     redirect_to("/home/index")
+    Task.where("date<?",@today-7).destroy_all
   end
 
   def delete
@@ -73,7 +78,7 @@ before_action :ensure_correct_user,{only:[:show,:edit,:update,:destroy,:delete,:
   end
 
   def memory
-    @tasks=Task.where(user_id: @current_user.id)
+    @tasks=Task.where(user_id: @current_user.id).where(check:0)
     @events=Event.where(user_id: @current_user.id)
     @today=Date.today
     @datetime=DateTime.now
@@ -100,7 +105,7 @@ before_action :ensure_correct_user,{only:[:show,:edit,:update,:destroy,:delete,:
   def unfinished
     @today=Date.today
     @datetime=DateTime.now
-    @unfinished_tasks=Task.where("date < ?",@today).where(user_id: @current_user.id)
+    @unfinished_tasks=Task.where("date < ?",@today).where(user_id: @current_user.id).where(check:0)
   end
 
   def add

@@ -34,7 +34,7 @@
                 <% elsif task.limit-@datetime > 0%>
                   <%= link_to(task.content,"/tasks/#{task.id}",class:"task-link") %>(<font color="red">〆切<%=((task.limit-@datetime)/(60*60)).to_i%>時間前</font>)
                 <%else%>
-                <%= link_to(task.content,"/tasks/#{task.id}",class:"task-link") %>(<font color="red">期限切れ！！</font>)
+                  <%= link_to(task.content,"/tasks/#{task.id}",class:"task-link") %>(<font color="red">期限切れ！！</font>)
                 <%end%>
               <%else%>
                <%= link_to(task.content,"/tasks/#{task.id}",class:"task-link") %>

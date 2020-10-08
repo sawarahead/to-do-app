@@ -33,7 +33,7 @@ before_action :ensure_correct_user,{only:[:show,:edit,:update,:destroy,:delete,:
       repeat:params[:repeat],
       limit:params[:limit],
       user_id:@current_user.id,
-      check:0
+      check:"0"
     )
     if @task.save
       redirect_to("/home/index")

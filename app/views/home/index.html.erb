@@ -14,7 +14,11 @@
 
     <div class="today-achievement-rate">
       <div class="today-achievement-rate">
+        <%if @today_all_task.count>0%>
         本日のタスク達成率：<font color="lime"><%=@today_all_task.where(check:1).count*100/@today_all_task.count%></font>％
+        <%else%>
+        本日のタスク達成率：<font color="lime">0</font>%
+        <%end%>
       </div>
       <div class="today-task-count">
         （本日の登録タスク数：<%=@today_all_task.count%>個　　　本日の終了済みタスク数：<%=@today_all_task.where(check:1).count%>個）

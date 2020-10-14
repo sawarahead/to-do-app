@@ -6,8 +6,8 @@ class EventsController < ApplicationController
   before_action :ensure_correct_user,{only:[:show,:edit,:destroy,:update]}
 
     def ensure_correct_user
-      @event=Event.find_by(id: params[:id])
-      if @event.id!=@current_user.id
+      @event=Event.find_by(id:params[:id])
+      if @event.user_id!=@current_user.id
         redirect_to("/")
        end
     end

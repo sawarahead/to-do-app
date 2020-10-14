@@ -7,7 +7,7 @@ require "date"
 
 
   def top
-
+    
   end
 
   def index

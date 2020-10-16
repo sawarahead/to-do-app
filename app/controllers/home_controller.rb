@@ -7,7 +7,7 @@ require "date"
 
 
   def top
-    
+
   end
 
   def index
@@ -30,9 +30,9 @@ require "date"
   end
 
   def normal_signup
-   @user=User.find_by(name:params[:name],password:params[:password])
+   @user=User.find_by(name:params[:name])
 
-   if @user
+   if @user && @user.authenticate(params[:password])
      flash[:notice]="既に登録済みのユーザーです。"
      render("home/normal")
    else

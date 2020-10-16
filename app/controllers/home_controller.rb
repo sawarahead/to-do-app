@@ -36,7 +36,7 @@ require "date"
      flash[:notice]="既に登録済みのユーザーです。"
      render("home/normal")
    else
-     @user_new=User.new(name:params[:name],password:params[:password])
+     @user_new=User.new(name:params[:name],password_digest:params[:password])
      if @user_new.save
        session[:user_id]=@user_new.id
        redirect_to("/home/index")

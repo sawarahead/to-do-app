@@ -33,7 +33,8 @@ before_action :ensure_correct_user,{only:[:show,:edit,:update,:destroy,:delete,:
       repeat:params[:repeat],
       limit:params[:limit],
       user_id:@current_user.id,
-      check:"0"
+      check:"0",
+      unfinish:"0"
     )
     if @task.save
       redirect_to("/home/index")
@@ -105,12 +106,15 @@ before_action :ensure_correct_user,{only:[:show,:edit,:update,:destroy,:delete,:
   def unfinished
     @today=Date.today
     @datetime=DateTime.now
-    @unfinished_tasks=Task.where("date < ?",@today).where(user_id: @current_user.id).where(check:0)
+    @unfinished_tasks=Task.where("date < ?",@today).where(user_id: @current_user.id).where(check:0).where(unfinish:0)
   end
 
   def add
     @today=Date.today
     @task=Task.find_by(id:params[:id])
+    @task_copy = @task.dup
+    @task_copy.unfinish=1
+    @task_copy.save
     @task.date=@today
     @task.save
     redirect_to("/tasks/unfinished")

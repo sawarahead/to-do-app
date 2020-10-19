@@ -11,7 +11,8 @@
       <% if @unfinished_tasks.count>0%>
       <% @unfinished_tasks.each do |unfinished_task|%>
       <div class="unfinished-task">
-        <% if !(unfinished_task.limit) || unfinished_task.limit - @datetime > 0 %>
+        <%if unfinished_task.unfinish == 0%>
+        <% if (!(unfinished_task.limit) || unfinished_task.limit - @datetime > 0) %>
         <div class="unfinished-task-name">
           task名：<%=link_to(unfinished_task.content,"/tasks/#{unfinished_task.id}",class:"task-link") %>
         </div>
@@ -31,7 +32,7 @@
         <div class="link-to-finish-unfinished">
           <%= link_to("完了！","/tasks/#{unfinished_task.id}/destroy",method:"post",class:"finish-link-from-unfinished")%>
         </div>
-        <%elsif unfinished_task.limit - @datetime < 0%>
+        <%elsif unfinished_task.limit - @datetime < 0 %>
         <div class="unfinished-task-name">
           task名：<%=link_to(unfinished_task.content,"/tasks/#{unfinished_task.id}",class:"task-link") %>(<font color="red">期限切れ！！</font>)
         </div>
@@ -47,6 +48,7 @@
         <div class="link-to-finish-unfinished">
           <%= link_to("完了！","/tasks/#{unfinished_task.id}/destroy",method:"post",class:"finish-link-from-unfinished")%>
         </div>
+        <%end%>
         <%end%>
       </div>
       <%end%>

@@ -481,3 +481,40 @@ header{
   font-weight: bold;
   padding:10px 0;
 }
+
+
+/*-------------------------------------------------------*/
+.weekly-achievement{
+  clear:both;
+  text-align: center;
+}
+
+.achievement-title{
+  color:brown;
+}
+
+.achievement-date{
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.achievement-contents{
+  width:70%;
+  margin:0 auto;
+  display:flex;
+  align-items:stretch;
+}
+
+.achievement-list{
+  width:49%;
+  text-align: center;
+  border:1px solid black;
+  font-size: 20px;
+}
+
+.achievement-details{
+  width:49%;
+  text-align: center;
+  border:1px solid black;
+  font-size: 20px;
+}

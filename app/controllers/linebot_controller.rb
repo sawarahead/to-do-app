@@ -21,11 +21,11 @@ class LinebotController < ApplicationController
     end
 
     events = client.parse_events_from(body)
-    tasks = Task.where(date:Date.today)
+    tasks = Task.where(date:Date.today).pluck(:content)
 
     events.each { |event|
       if event.message['text'].include?("1")
-        response="本日のto-do-listは#{tasks.count}件です。\nto-doの追加等はwebサイトで行ってください。↓\n https://infinite-fjord-36648.herokuapp.com/（PC専用）"
+        response="本日のto-do-listは#{tasks.count}件です。\nto-doの追加等はwebサイトで行ってください。↓\n https://infinite-fjord-36648.herokuapp.com/ \n（PC専用,chrome推奨）"
 
       elsif event.message['text'].include?("2")
         if tasks

@@ -21,6 +21,7 @@ class LinebotController < ApplicationController
     end
 
     events = client.parse_events_from(body)
+    user_id=events['source']['userId']
     tasks = Task.where(date:Date.today).pluck(:content)
 
     events.each { |event|
@@ -34,7 +35,12 @@ class LinebotController < ApplicationController
           response="本日のto-do-listが設定されていません。"
         end
       else
-        response="oooooo"
+        user=User.find_by(name:event.message['text'])
+        if user
+          response="いるね"
+        else
+          response="いないね"
+        end
       end
 
       case event

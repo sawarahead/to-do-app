@@ -7,6 +7,7 @@ require "date"
 
 
   def top
+    @a=ENV['LINElogin_CHANNEL_SECRET']
   end
 
   def index

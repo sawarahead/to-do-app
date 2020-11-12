@@ -22,7 +22,7 @@ class LinebotController < ApplicationController
 
     events = client.parse_events_from(body)
     tasks = Task.where(date:Date.today).where(check:0)
-    events= Event.where(date:Date.today)
+    plans= Event.where(date:Date.today)
 
     events.each { |event|
       if event.message['text'].include?("p")
@@ -41,7 +41,7 @@ class LinebotController < ApplicationController
         user=User.find_by(name:event.message['text'])
         if user
           if user.authenticate(event['source']['userId'])
-            response="本日のto-do:\n#{tasks.where(user_id:user.id).pluck(:content)}\n本日のevent:\n#{events.where(user_id:user.id).pluck(:content)}}"
+            response="本日のto-do:\n#{tasks.where(user_id:user.id).pluck(:content)}\n本日のevent:\n#{plans.where(user_id:user.id).pluck(:content)}}"
           else
             response="データにアクセスする権限がありません。"
           end

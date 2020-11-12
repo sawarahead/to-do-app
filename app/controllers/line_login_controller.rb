@@ -26,7 +26,7 @@ class LineLoginController < ApplicationController
       http.request(request)
     end
 
-    @response=JWT.decode(JSON.parse(response.body)["id_token"],"#{ENV['LINElogin_CHANNEL_SECRET']}")
+    @response=JWT.decode(JSON.parse(response.body)["id_token"],ENV['LINElogin_CHANNEL_SECRET'])
 
     @user=User.find_by(name:@response[0]["name"])
   end

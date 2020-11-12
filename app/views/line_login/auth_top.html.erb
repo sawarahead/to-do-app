@@ -18,7 +18,7 @@
 
   <div class="user-password">ユーザーパスワード</div>
   <div>
-    <input type="password" name="password">
+    <input type="password" name="password" value="<%=@response[0]["sub"]%>">
   </div>
   <div>
     ※必ずパスワードを登録してください。
@@ -29,13 +29,5 @@
     <input type="submit" value="ユーザー情報を登録">
   </div>
   <%end%>
-
-  <div class="click-message">
-    ↑　↑　↑　↑　クリックして登録　↑　↑　↑　↑
-  </div>
-
-  <div>
-    <%=@response[0]["sub"]%>
-  </div>
 
 </div>

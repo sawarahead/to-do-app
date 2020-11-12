@@ -1,17 +1,17 @@
 <div class="main">
   <div class="container">
 
-    #詳細ページへの移動
+    <!-詳細ページへの移動->
     <div class="back-show">
       <%= link_to("←編集取り消し","/events/#{@event.id}",class:"link-show") %>
     </div>
 
 
-    #ページタイトル
+    <!-ページタイトル->
     <h2 class="edit-title">eventの編集中...</h2>
 
 
-    #入力時のエラー表示
+    <!-入力時のエラー表示->
     <% @event.errors.full_messages.each do |message| %>
     <div class="form-error">
       <%= message %>
@@ -19,9 +19,10 @@
     <%end%>
 
 
-    #登録中の内容の表示
+    <!-登録中の内容の表示->
     <%= form_tag("/events/#{@event.id}/update") do %>
     <div class="input-event-form">
+      
       <div class="input-event-name">
         イベントの内容(content)：<input type="text" name="content" value="<%=@event.content%>">
       </div>

@@ -1,86 +1,91 @@
 <div class="main">
   <div class="container">
 
+    <!-今日の予定に戻る->
     <div class="link-index">
       <%= link_to("←task・eventの一覧へ戻る","/home/index",class:"link-to-index")%>
     </div>
 
+    <!-ページタイトル->
     <h2 class="new-title">新しいイベントの追加</h2>
 
+    <!-入力時のエラー表示->
     <% @event.errors.full_messages.each do |message| %>
       <div class="form-error">
-         <%= message %>
+        <%= message %>
       </div>
     <%end%>
 
+    <!-イベントの登録内容->
     <%= form_tag("/events/create") do %>
-      <div class="input-event-form">
-        <div class="input-event-name">
-          新しいイベント(content)：<input type="text" name="content" size="40">
-        </div>
+    <div class="input-event-form">
 
-        <div class="input-event-place">
-          イベントの会場：
-          <div>
-           <label><input type="radio" name="place" value="0" checked>未定</label>
-          </div>
-          <div>
-            <label><input type="radio" name="place" value="1">自宅</label>
-          </div>
-          <div>
-            <label><input type="radio" name="place" value="2">学校　教室：</label><input type="text" name="place_detail">
-          </div>
-          <div>
-            <label><input type="radio" name="place" value="3">その他：<label><input type="text" name="place_detail">
-          </div>
-        </div>
+      <div class="input-event-name">
+        新しいイベント(content)：<input type="text" name="content" size="40">
+      </div>
 
-        <div class="input-event-date">
-          イベントの開催日（date）：<input type="date" name="date" value="<%=@today%>">
+      <div class="input-event-place">
+        イベントの会場：
+        <div>
+         <label><input type="radio" name="place" value="0" checked>未定</label>
         </div>
+        <div>
+          <label><input type="radio" name="place" value="1">自宅</label>
+        </div>
+        <div>
+          <label><input type="radio" name="place" value="2">学校　教室：</label><input type="text" name="place_detail">
+        </div>
+        <div>
+          <label><input type="radio" name="place" value="3">その他：<label><input type="text" name="place_detail">
+        </div>
+      </div>
 
-        <div class="input-event-time">
-          イベントの時間（time）：<input type="time" name="start_time" value="00:00">〜<input type="time" name="end_time">
-        </div>
+      <div class="input-event-date">
+        イベントの開催日（date）：<input type="date" name="date" value="<%=@today%>">
+      </div>
 
-        <div class="input-event-detail">
-          詳細情報（detail）：<textarea name="detail" rows="4"></textarea>
-        </div>
+      <div class="input-event-time">
+        イベントの時間（time）：<input type="time" name="start_time" value="00:00">〜<input type="time" name="end_time">
+      </div>
 
-        <div class="input-event-repeat">自動で繰り返し処理を行いますか？（repeat）：
-          <div>
-            <label><input type="radio" name="repeat" value="8" checked>なし</label>
-          </div>
-          <div>
-            <label><input type="radio" name="repeat" value="7">毎日</label>
-          </div>
-          <div>
-            <label><input type="radio" name="repeat" value="0">毎週日曜日</label>
-          </div>
-          <div>
-            <label><input type="radio" name="repeat" value="1">毎週月曜日</label>
-          </div>
-          <div>
-            <label><input type="radio" name="repeat" value="2">毎週火曜日</label>
-          </div>
-          <div>
-            <label><input type="radio" name="repeat" value="3">毎週水曜日</label>
-          </div>
-          <div>
-            <label><input type="radio" name="repeat" value="4">毎週木曜日</label>
-          </div>
-          <div>
-            <label><input type="radio" name="repeat" value="5">毎週金曜日</label>
-          </div>
-          <div>
-            <label><input type="radio" name="repeat" value="6">毎週土曜日</label>
-          </div>
-        </div>
+      <div class="input-event-detail">
+        詳細情報（detail）：<textarea name="detail" rows="4"></textarea>
+      </div>
 
-        <div class="form-submit">
-          <input type="submit" value="登録">
+      <div class="input-event-repeat">自動で繰り返し処理を行いますか？（repeat）：
+    　  <div>
+          <label><input type="radio" name="repeat" value="8" checked>なし</label>
         </div>
-     </div>
+        <div>
+          <label><input type="radio" name="repeat" value="7">毎日</label>
+        </div>
+        <div>
+          <label><input type="radio" name="repeat" value="0">毎週日曜日</label>
+        </div>
+        <div>
+          <label><input type="radio" name="repeat" value="1">毎週月曜日</label>
+        </div>
+        <div>
+          <label><input type="radio" name="repeat" value="2">毎週火曜日</label>
+        </div>
+        <div>
+          <label><input type="radio" name="repeat" value="3">毎週水曜日</label>
+        </div>
+        <div>
+          <label><input type="radio" name="repeat" value="4">毎週木曜日</label>
+        </div>
+        <div>
+          <label><input type="radio" name="repeat" value="5">毎週金曜日</label>
+        </div>
+        <div>
+          <label><input type="radio" name="repeat" value="6">毎週土曜日</label>
+        </div>
+      </div>
+
+      <div class="form-submit">
+        <input type="submit" value="登録">
+      </div>
+    </div>
     <%end%>
   </div>
 </div>

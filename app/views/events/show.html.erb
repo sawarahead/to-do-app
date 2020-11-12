@@ -1,10 +1,13 @@
 <div class="main">
   <div class="container">
 
+    <!-今日の予定に戻る->
     <div class="link-index">
       <%= link_to("←task・eventの一覧へ戻る","/home/index")%>
     </div>
 
+
+    <!-イベントの詳細情報->
     <div class="event-show">
       <h2 class="event-title">event名：<u><%= @event.content %></u></h2>
 
@@ -61,12 +64,12 @@
           最終更新日：<%= @event.updated_at.year.to_s %>年<%= @event.updated_at.month.to_s%>月<%= @event.updated_at.day.to_s%>日<%= @week[@event.updated_at.wday]%>
         </div>
 
-        <div class="link-to-event-edit">
-          <%= link_to("編集","/events/#{params[:id]}/edit",class:"event-edit-link")%>
+        <div class="go-to-event-edit">
+          <%= link_to("編集","/events/#{params[:id]}/edit",class:"link-to-event-edit")%>
         </div>
 
-        <div class="link-to-event-cancel">
-          <%= link_to("予約削除！","/events/#{@event.id}/destroy",method:"post",class:"cancel-event-link")%>
+        <div class="go-to-event-cancel">
+          <%= link_to("予約削除！","/events/#{@event.id}/destroy",method:"post",class:"link-to-event-cancel")%>
         </div>
 
       </div>

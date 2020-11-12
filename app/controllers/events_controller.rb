@@ -84,7 +84,6 @@ class EventsController < ApplicationController
       else
        render("events/edit")
       end
-    end
 
     #繰り返し機能に関してのみ変更がある場合
     elsif params[:repeat]!="9" && params[:place]=="4"
@@ -99,7 +98,6 @@ class EventsController < ApplicationController
       else
        render("events/edit")
       end
-    end
 
     #全てに変更がある場合
 　　 else

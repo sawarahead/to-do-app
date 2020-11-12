@@ -79,7 +79,7 @@ before_action :ensure_correct_user,{only:[:show,:edit,:update,:destroy,:delete,:
   end
 
   def memory
-    @tasks=Task.where(user_id: @current_user.id).where(check:0)
+    @tasks=Task.where(user_id: @current_user.id).where(check:0).where(unfinish:0)
     @events=Event.where(user_id: @current_user.id)
     @today=Date.today
     @datetime=DateTime.now

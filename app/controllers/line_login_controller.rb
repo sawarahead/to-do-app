@@ -14,8 +14,8 @@ class LineLoginController < ApplicationController
       "grant_type" => "authorization_code",
       "code" => params[:code],
       "redirect_uri" => "https://infinite-fjord-36648.herokuapp.com/auth",
-      "client_id" => ENV["LINE_CHANNEL_TOKEN"],
-      "client_secret" => ENV["LINE_CHANNEL_SECRET"]
+      "client_id" => "1654987275",
+      "client_secret" => "606b3608ff10c18bc0c1d92a575d355c"
     )
 
     req_options = {

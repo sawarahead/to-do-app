@@ -36,7 +36,7 @@ class LinebotController < ApplicationController
       else
         user=User.find_by(name:event.message['text'])
         if user
-          response="#{event[1]}"
+          response="a"
         else
           response="いないね"
         end

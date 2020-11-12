@@ -14,8 +14,8 @@ class LineLoginController < ApplicationController
       "grant_type" => "authorization_code",
       "code" => params[:code],
       "redirect_uri" => "https://infinite-fjord-36648.herokuapp.com/auth",
-      "client_id" => "#{ENV["LINElogin_CHANNEL_TOKEN"]}",
-      "client_secret" => "#{ENV["LINElogin_CHANNEL_SECRET"]}"
+      "client_id" => ENV["LINE_CHANNEL_TOKEN"],
+      "client_secret" => ENV["LINE_CHANNEL_SECRET"]
     )
 
     req_options = {
@@ -26,11 +26,7 @@ class LineLoginController < ApplicationController
       http.request(request)
     end
 
-    @response=JWT.decode(JSON.parse(response.body)["id_token"],"606b3608ff10c18bc0c1d92a575d355c")
-
-    uri=URI.parse("https://api.line.me/v2/profile")
-    request=Net::HTTP::GET.new(uri)
-    request.content_type="application/x-www-form-urlencoded"
+    @response=JWT.decode(JSON.parse(response.body)["id_token"],"#{ENV['LINElogin_CHANNEL_SECRET']}")
 
     @user=User.find_by(name:@response[0]["name"])
   end

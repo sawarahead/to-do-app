@@ -31,9 +31,9 @@ class LineLoginController < ApplicationController
   end
 
   def line_signup
-   @user=User.find_by(name:params[:name],password:params[:password])
+   @user=User.find_by(name:params[:name])
 
-   if @user
+   if @user && @user.authenticate(params[:password])
      flash[:notice]="既に登録済みのユーザーです。"
      render("line_login/auth_top")
    else

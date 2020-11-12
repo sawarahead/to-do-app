@@ -37,7 +37,8 @@ class LinebotController < ApplicationController
         user=User.find_by(name:event.message['text'])
         if user
           if user.authenticate(event['source']['userId'])
-            response="見つけた"
+            task=tasks.where(user_id:user.id)
+            response="#{task}"
           else
             response="いないで"
           end

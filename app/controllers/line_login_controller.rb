@@ -28,7 +28,6 @@ class LineLoginController < ApplicationController
 
     @response=JWT.decode(JSON.parse(response.body)["id_token"],ENV['LINElogin_CHANNEL_SECRET'])
 
-    redirect_to("/line_signup")
   end
 
   def line_signup

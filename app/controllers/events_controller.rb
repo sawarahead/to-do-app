@@ -5,12 +5,12 @@ class EventsController < ApplicationController
   before_action :authenticate_user
   before_action :ensure_correct_user,{only:[:show,:edit,:destroy,:update]}
 
-    def ensure_correct_user
-      @event=Event.find_by(id:params[:id])
-      if @event.user_id!=@current_user.id
-        redirect_to("/")
-       end
+  def ensure_correct_user
+    @event=Event.find_by(id:params[:id])
+    if @event.user_id!=@current_user.id
+      redirect_to("/")
     end
+  end
 
   def new
     @today=Date.today

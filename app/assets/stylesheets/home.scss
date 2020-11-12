@@ -194,7 +194,7 @@ header{
   font-size: 60px;
 }
 
-.link-task-memory{
+.go-to-memory{
   width:25%;
   height:50px;
   font-size: 30px;
@@ -207,23 +207,23 @@ header{
   box-shadow: 0 3px black;
 }
 
-.link-task-memory :hover{
+.go-to-memory :hover{
   background-color: rgb(230,230,155);
 }
 
-.link-task-memory :active{
+.go-to-memory :active{
   position:relative;
   top:3px;
   box-shadow: none;
 }
 
-.memory-link{
+.link-to-memory{
   text-decoration: none;
   color:olive;
   display:block;
 }
 
-.unfinished-link{
+.unfinished-alert{
   text-align: center;
   width:40%;
   margin:0 auto;
@@ -231,17 +231,17 @@ header{
   background-color: rgb(255,230,230);
 }
 
-.unfinished-link :hover{
+.unfinished-alert :hover{
   background-color: rgb(235,210,210);
 }
 
-.unfinished-alert {
+.link-to-unfinished {
   color:red;
   font-size: 25px;
   display:block;
 }
 
-.today-achievement-rate{
+.today-achievement{
   text-align: center;
 }
 

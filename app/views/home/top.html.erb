@@ -1,10 +1,12 @@
 <div class="main top-main">
   <div class="top-message">
-    <h1>What I should do today?</h1>
+    <h1>What should I do today?</h1>
     <p>日々の予定を記録し、より効率的で快適な生活を</p>
   </div>
 
+  <!-ログイン済みのユーザーに表示->
   <%if session[:user_id]%>
+  <!-今日の予定に移動->
   <div class="start-btn">
     <%= link_to("今日のto-do-listを見に行く","/home/index",class:"top-link") %>
   </div>
@@ -12,9 +14,12 @@
   <div class="click-message">
     ↑　↑　↑　↑　クリックしてスタート　↑　↑　↑　↑
   </div>
+
+  <!-ログインしていないユーザーに表示->
   <%else%>
-    <div class="start-new">新規登録の方は<%=link_to("こちら","/signup")%></div>
-    <div class="start-re">登録済みの方は<%=link_to("こちら","/home/login")%></div>
+  <!-新規登録ページへ移動->
+  <div class="start-new">新規登録の方は<%=link_to("こちら","/signup")%></div>
+  <div class="start-re">登録済みの方は<%=link_to("こちら","/home/login")%></div>
 
   <%end%>
 

@@ -21,7 +21,7 @@ class LinebotController < ApplicationController
     end
 
     events = client.parse_events_from(body)
-    tasks = Task.where(date:Date.today).where(check:0).pluck(:content)
+    tasks = Task.where(date:Date.today).where(check:0)
 
     events.each { |event|
       if event.message['text'].include?("1")
@@ -37,7 +37,7 @@ class LinebotController < ApplicationController
         user=User.find_by(name:event.message['text'])
         if user
           if user.authenticate(event['source']['userId'])
-            response="君だね"
+            response="#{tasks.pluck(:content)}"
           else
             response="いないで"
           end

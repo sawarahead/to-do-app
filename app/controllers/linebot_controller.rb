@@ -22,24 +22,23 @@ class LinebotController < ApplicationController
 
     events = client.parse_events_from(body)
     tasks = Task.where(date:Date.today).where(check:0)
+    events= Event.where(date:Date.today)
 
     events.each { |event|
-      if event.message['text'].include?("1")
-        response="本日のto-do-listは#{tasks.count}件です。\nto-doの追加等はwebサイトで行ってください。↓\n https://infinite-fjord-36648.herokuapp.com/ \n（PC専用,chrome推奨）"
+      if event.message['text'].include?("p")
+        response="こちらがwebサイトのurlです。↓\n https://infinite-fjord-36648.herokuapp.com/ \n※PC専用です（chromeを利用することを推奨します）"
 
-      elsif event.message['text'].include?("2")
-        if tasks
-          response="本日のto-do-listです。\n#{tasks}"
-        else
-          response="本日のto-do-listが設定されていません。"
-        end
+      elsif event.message['text'].include?("使い方")
+        response="※このチャットの使い方※\n①このアプリのサイトでLINE loginを行ってください。\n②webサイト上で日々のto-doやeventを登録してください。
+        \n③このチャットでLINEの登録名を入力してください。\n④今日予定しているto-doとeventの一覧をお伝えします。\nサイトURL:\n https://infinite-fjord-36648.herokuapp.com/ "
+
       else
         user=User.find_by(name:event.message['text'])
         if user
           if user.authenticate(event['source']['userId'])
-            response="#{tasks.where(user_id:user.id).pluck(:content)}"
+            response="本日のto-do:\n#{tasks.where(user_id:user.id).pluck(:content)}\n本日のevent:\n#{events.where(user_id:user.id).pluck(:content)}}"
           else
-            response="いないで"
+            response="データにアクセスする権限がありません。"
           end
         else
           response="「使い方」と入力してください。\nこのチャットの使用方法の一覧を表示します。"

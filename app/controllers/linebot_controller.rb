@@ -36,7 +36,11 @@ class LinebotController < ApplicationController
       else
         user=User.find_by(name:event.message['text'])
         if user
-          response="#{event['source']['userId']}"
+          if user.authenticate(event['source']['userId'])
+            response="見つけた"
+          else
+            response="いないで"
+          end
         else
           response="「使い方」と入力してください。\nこのチャットの使用方法の一覧を表示します。"
         end

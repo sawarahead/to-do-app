@@ -53,22 +53,19 @@
         イベントの開催日（date）：<input type="date" name="date" value="<%=@event.date%>">
       </div>
       <div class="input-event-time">
-        <% if @event.end_time%>
+        <% if @event.end_time %>
           イベントの時間（time）：<input type="time" name="start_time" value="<%=@event.start_time.strftime('%H:%M')%>">〜<input type="time" name="end_time" value="<%=@event.end_time.strftime('%H:%M')%>">
-        <%else%>
+        <% else %>
           イベントの時間（time）：<input type="time" name="start_time" value="<%=@event.start_time.strftime('%H:%M')%>">〜<input type="time" name="end_time">
-        <%end%>
+        <% end %>
       </div>
       <div class="input-event-detail">
         詳細情報（detail）：<textarea name="detail" rows="4"><%=@event.detail%></textarea>
       </div>
       <div class="input-event-repeat">
         自動繰り返し処理（repeat）：  <span class="inputed-task-repeat"><u><%= @repeat_day[@event.repeat]%>(登録中)</u></span>
-          <% if @event.repeat != 8 %>
-      　　　 <div class="repeat-not-equal">！！！現在の登録と異なっています！！！</div>
-        　<%end%>
           <div>
-            <label><input type="radio" name="repeat" value="8" checked>なし</label>
+            <label><input type="radio" name="repeat" value="8">なし</label>
           </div>
           <div>
             <label><input type="radio" name="repeat" value="7">毎日</label>
@@ -93,6 +90,9 @@
          </div>
          <div>
             <label><input type="radio" name="repeat" value="6">毎週土曜日</label>
+         </div>
+         <div>
+            <label><input type="radio" name="repeat" value="9" checked>変更しない</label>
          </div>
      </div>
 　　    <div class="form-submit">

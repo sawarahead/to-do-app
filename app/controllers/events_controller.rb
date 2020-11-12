@@ -56,19 +56,34 @@ class EventsController < ApplicationController
 
   def update
     @event=Event.find_by(id:params[:id])
-    @event.content=params[:content]
-    @event.place=params[:place]
-    @event.place_detail=params[:place_detail]
-    @event.date=params[:date]
-    @event.start_time=params[:start_time]
-    @event.end_time=params[:end_time]
-    @event.detail=params[:detail]
-    @event.repeat=params[:repeat]
+    if params[:repeat]=="9"
+      @event.content=params[:content]
+      @event.place=params[:place]
+      @event.place_detail=params[:place_detail]
+      @event.date=params[:date]
+      @event.start_time=params[:start_time]
+      @event.end_time=params[:end_time]
+      @event.detail=params[:detail]
+      if @event.save
+       redirect_to("/events/#{params[:id]}")
+      else
+       render("events/edit")
+      end
 
-    if @event.save
-     redirect_to("/events/#{params[:id]}")
     else
-     render("events/edit")
+      @event.content=params[:content]
+      @event.place=params[:place]
+      @event.place_detail=params[:place_detail]
+      @event.date=params[:date]
+      @event.start_time=params[:start_time]
+      @event.end_time=params[:end_time]
+      @event.detail=params[:detail]
+      @event.repeat=params[:repeat]
+      if @event.save
+       redirect_to("/events/#{params[:id]}")
+      else
+       render("events/edit")
+      end
     end
   end
 

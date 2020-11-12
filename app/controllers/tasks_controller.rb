@@ -93,13 +93,22 @@ before_action :ensure_correct_user,{only:[:show,:edit,:update,:destroy,:delete,:
 
   def update
     @task=Task.find_by(id:params[:id])
-    @task.content=params[:content]
-    @task.detail=params[:detail]
-    @task.time=params[:planed_time]
-    @task.date=params[:date]
-    @task.repeat=params[:repeat]
-    @task.limit=params[:limit]
-    @task.save
+    if params[:repeat]=="9"
+      @task.content=params[:content]
+      @task.detail=params[:detail]
+      @task.time=params[:planed_time]
+      @task.date=params[:date]
+      @task.limit=params[:limit]
+      @task.save
+    else
+      @task.content=params[:content]
+      @task.detail=params[:detail]
+      @task.time=params[:planed_time]
+      @task.date=params[:date]
+      @task.repeat=params[:repeat]
+      @task.limit=params[:limit]
+      @task.save
+    end
     redirect_to("/tasks/#{params[:id]}")
   end
 

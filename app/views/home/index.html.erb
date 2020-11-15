@@ -39,16 +39,16 @@
             総時間：　<u><%=@total_task_time / 60%>時間<%=@total_task_time % 60%>分</u>
           </div>
 
-          <div class="link-add-task">
-            <%= link_to("タスクの追加","/tasks/new",class:"task-add-link") %>
+          <div class="add-task">
+            <%= link_to("タスクの追加","/tasks/new",class:"link-to-add-task") %>
           </div>
 
           <% if @tasks.where(date:@today).count >0 %>
             <% @tasks.each do |task| %>
-            <div class="to-do">
+            <div class="task">
               <!-基本は実行予定日が今日のものを表示する。ただし、毎週繰り返し機能を使ったものは今日以前かつ今日の曜日のものを表示->
               <% if ((task.repeat == 8 || task.repeat == 7) && task.date == @today) || (task.repeat == @today.wday && task.date <= @today) %>
-                <div class="to-do-name">
+                <div class="task-name">
                   <!-タスクの名前と締め切りの表示->
                   <% if task.limit%>
                     <% if task.limit-@datetime >= 60*60*24%>
@@ -65,14 +65,14 @@
 
                 <!-目安時間、繰り返し設定、完了ボタン->
                 <div class="task-bottom-line">
-                  <div class="to-do-time">
+                  <div class="task-length">
                     目安時間：<%= task.time %>分
                   </div>
                   <div class="task-repeat-type">
                     <%= @repeat[task.repeat]%>
                   </div>
-                  <div class="to-do-finish">
-                    <%= link_to("終わった！","/tasks/#{task.id}/destroy",method:"post",class:"finish-link")%>
+                  <div class="task-finish-index">
+                    <%= link_to("終わった！","/tasks/#{task.id}/destroy",method:"post",class:"link-to-finish-index")%>
                   </div>
                 </div>
               <%end%>
@@ -91,8 +91,8 @@
         <h2 class="list-name-event">Event-List</h2>
         <div class="event-list-item">
 
-          <div class="link-add-event">
-            <%= link_to("イベントの追加","/events/new",class:"event-add-link") %>
+          <div class="add-event">
+            <%= link_to("イベントの追加","/events/new",class:"link-to-add-event") %>
           </div>
 
           <!-単発かつ今日のイベント、毎日のイベント、今日の曜日に毎週あるイベントを表示->

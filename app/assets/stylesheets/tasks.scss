@@ -14,6 +14,7 @@
 }
 
 /*show===============================================================================*/
+/*タスクの内容*/
 .show-title{
   width:100%;
   height:60px;
@@ -24,6 +25,7 @@
   font-size:50px;
 }
 
+/*タスクの詳細情報・目安時間・実行予定日・期限・登録日・最終更新日*/
 .task-data{
   border:1px solid black;
   border-radius: 5px;
@@ -48,13 +50,14 @@
   margin-bottom:70px;
 }
 
-.link-to-task-edit{
+/*編集へのリンク*/
+.go-to-task-edit{
   position: absolute;
   left:30%;
   bottom: 10px;
 }
 
-.task-edit-link{
+.link-to-task-edit{
   text-decoration: none;
   color:green;
   font-size:30px;
@@ -62,15 +65,17 @@
   border:1px solid rgb(200,200,235);
   border-radius: 7px;
   padding:2px 5px;
+  box-shadow: 0 2px black;
 }
 
-.link-to-task-finish{
+/*タスク完了ボタン*/
+.task-finish-show{
   position: absolute;
   right:30%;
   bottom: 10px;
 }
 
-.finish-task-link{
+.link-to-finish-show{
   text-decoration: none;
   color:red;
   font-size:30px;
@@ -78,9 +83,11 @@
   border:1px solid rgb(200,200,235);
   border-radius: 7px;
   padding:2px;
+  box-shadow: 0 2px black;
 }
 
 /*new=================================================================================*/
+/*ページタイトル*/
 .new-title{
   width:100%;
   height:60px;
@@ -92,8 +99,8 @@
 }
 
 /*edit================================================================================*/
-
-.back-show{
+/*タスクの詳細ページへのリンク*/
+.back-to-show{
   width:100%;
   height:30px;
   line-height: 30px;
@@ -102,10 +109,11 @@
   padding-top: 20px;
 }
 
-.link-show{
+.link-to-show{
   color:blue;
 }
 
+/*ページタイトル*/
 .edit-title{
   width:100%;
   height:60px;
@@ -116,8 +124,8 @@
   font-size: 50px;
 }
 
-/*newとeditの共通フォーム-------------------------------------*/
-
+/*newとeditの共通フォーム==================================================================*/
+/*エラー表示*/
 .form-error{
   text-align: center;
   margin:0 auto;
@@ -128,6 +136,7 @@
   background-color: rgb(255,230,230);
 }
 
+/*入力フォーム*/
 .input-task-form{
   border:1px solid black;
   border-radius: 5px;
@@ -172,6 +181,7 @@
   margin-left:20px;
 }
 
+/*登録ボタン*/
 .form-submit input{
   display:block;
   margin:0 auto;
@@ -181,6 +191,7 @@
 }
 
 /*unfinished=============================================================================*/
+/*ページタイトル*/
 .unfinished-title{
   width:100%;
   height:60px;
@@ -191,6 +202,7 @@
   font-size: 50px;
 }
 
+/*未完了タスクリスト*/
 .unfinished-task{
   border:1px solid black;
   border-radius: 5px;
@@ -206,6 +218,7 @@
   padding:5px 20px;
 }
 
+/*今日のタスクに加えるボタン*/
 .add-today{
   position:absolute;
   top:20%;
@@ -226,38 +239,40 @@
   box-shadow: none;
 }
 
-.add-link{
+.add-today-link{
   text-decoration: none;
   color:navy;
   display: block;
 }
 
-.link-to-finish-unfinished{
+/*タスク完了ボタン*/
+.task-finish-unfinished{
   position: absolute;
   right:80px;
   bottom: 20%;
   background-color:#e6ffe9;
   border:1px solid #2f4f4f;
-  border-radius: 7px;
+  border-radius: 5px;
   box-shadow: 0 2px black;
 }
 
-.link-to-finish-unfinished :hover{
+.task-finish-unfinished :hover{
   background-color: #99ff99;
 }
 
-.link-to-finish-unfinished :active{
+.ltask-finish-unfinished :active{
   position:relative;
   top:2px;
   box-shadow: none;
 }
 
-.finish-link-from-unfinished{
+.link-to-finish-unfinished{
   text-decoration: none;
   color:red;
   display: block;
 }
 
+/*未完了タスクがない場合のメッセージ*/
 .unfinished-empty{
   width: 100%;
   text-align: center;
@@ -266,6 +281,7 @@
 }
 
 /*weekly==================================================================================*/
+/*ページタイトル*/
 .weekly-title{
   width:100%;
   height:60px;
@@ -276,6 +292,7 @@
   font-size: 50px;
 }
 
+/*１週間の予定*/
 .weekly-plan-list{
   margin:0 30px;
 }
@@ -285,12 +302,14 @@
   border-top:1px solid black;
 }
 
+/*日付*/
 .weekly-plan-day{
   font-size:30px;
   font-weight: bold;
   text-align: center;
 }
 
+/*その日のタスクとイベント*/
 .weekly-lists{
   display:flex;
   align-items: stretch;
@@ -303,7 +322,6 @@
 
 .weekly-event-list{
   width:48%;
-
   border-left: 1px solid silver;
 }
 

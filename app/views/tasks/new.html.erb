@@ -1,68 +1,79 @@
 <div class="main">
   <div class="container">
 
+    <!-今日の予定に戻る->
     <div class="back-to-index">
       <%= link_to("←task・eventの一覧へ戻る","/home/index",class:"link-to-index")%>
     </div>
 
+    <!-ページタイトル->
     <h2 class="new-title">新しいタスクの追加</h2>
 
+    <!-入力時のエラー表示->
     <% @task.errors.full_messages.each do |message| %>
       <div class="form-error">
          <%= message %>
       </div>
     <%end%>
 
+    <!-タスクの登録フォーム->
     <%= form_tag("/tasks/create") do %>
-      <div class="input-task-form">
-        <div class="input-task-name">
-          新しいタスク(content)：<input type="text" name="content" size="40">
+    <div class="input-task-form">
+
+      <div class="input-task-name">
+        新しいタスク(content)：<input type="text" name="content" size="40">
+      </div>
+
+      <div class="input-task-detail">
+        詳細情報（detail）：<textarea name="detail" rows="4"></textarea>
+      </div>
+
+      <div class="input-task-time">
+        目安時間を決めてください。（time）：<input type="number" name="planed_time" value="30">分
+      </div>
+
+      <div class="input-task-date">
+        taskを行う日付を選んでください（date）：<input type="date" name="date" value="<%=@today%>">
+      </div>
+
+      <div class="input-task-repeat">自動で繰り返し処理を行いますか？（repeat）：
+        <div>
+          <label><input type="radio" name="repeat" value="8" checked>なし</label>
         </div>
-        <div class="input-task-detail">
-          詳細情報（detail）：<textarea name="detail" rows="4"></textarea>
+        <div>
+          <label><input type="radio" name="repeat" value="7">毎日</label>
         </div>
-        <div class="input-task-time">
-          目安時間を決めてください。（time）：<input type="number" name="planed_time" value="30">分
+        <div>
+          <label><input type="radio" name="repeat" value="0">毎週日曜日</label>
         </div>
-        <div class="input-task-date">
-          taskを行う日付を選んでください（date）：<input type="date" name="date" value="<%=@today%>">
+        <div>
+          <label><input type="radio" name="repeat" value="1">毎週月曜日</label>
         </div>
-        <div class="input-task-repeat">自動で繰り返し処理を行いますか？（repeat）：
-          <div>
-            <label><input type="radio" name="repeat" value="8" checked>なし</label>
-          </div>
-          <div>
-            <label><input type="radio" name="repeat" value="7">毎日</label>
-          </div>
-          <div>
-            <label><input type="radio" name="repeat" value="0">毎週日曜日</label>
-          </div>
-          <div>
-            <label><input type="radio" name="repeat" value="1">毎週月曜日</label>
-          </div>
-          <div>
-            <label><input type="radio" name="repeat" value="2">毎週火曜日</label>
-          </div>
-          <div>
-            <label><input type="radio" name="repeat" value="3">毎週水曜日</label>
-          </div>
-          <div>
-            <label><input type="radio" name="repeat" value="4">毎週木曜日</label>
-          </div>
-          <div>
-            <label><input type="radio" name="repeat" value="5">毎週金曜日</label>
-          </div>
-          <div>
-            <label><input type="radio" name="repeat" value="6">毎週土曜日</label>
-          </div>
+        <div>
+          <label><input type="radio" name="repeat" value="2">毎週火曜日</label>
         </div>
-        <div class="input-task-limit">
-          締め切り期限(limit)：<input type="datetime-local" name="limit">
+        <div>
+          <label><input type="radio" name="repeat" value="3">毎週水曜日</label>
         </div>
-　　    <div class="form-submit">
-          <input type="submit" value="登録">
-       </div>
-     </div>
+        <div>
+          <label><input type="radio" name="repeat" value="4">毎週木曜日</label>
+        </div>
+        <div>
+          <label><input type="radio" name="repeat" value="5">毎週金曜日</label>
+        </div>
+        <div>
+          <label><input type="radio" name="repeat" value="6">毎週土曜日</label>
+        </div>
+      </div>
+
+      <div class="input-task-limit">
+        締め切り期限(limit)：<input type="datetime-local" name="limit">
+      </div>
+
+      <div class="form-submit">
+        <input type="submit" value="登録">
+      </div>
+    </div>
     <%end%>
   </div>
 </div>

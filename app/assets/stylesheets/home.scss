@@ -346,7 +346,7 @@ header{
   font-size: 30px;
 }
 
-.link-add-task{
+.add-task{
   width:30%;
   margin:10px auto;
   text-align: center;
@@ -356,17 +356,17 @@ header{
   box-shadow: 0 3px black;
 }
 
-.link-add-task :hover{
+.add-task :hover{
   background-color:#75a9ff;
 }
 
-.link-add-task :active{
+.add-task :active{
   position:relative;
   top:3px;
   box-shadow: none;
 }
 
-.task-add-link{
+.link-to-add-task{
   text-decoration: none;
   color:teal;
   font-weight: bold;
@@ -374,19 +374,15 @@ header{
   display: block;
 }
 
-.to-do{
+.task{
   margin:5px 0;
   border-radius:10px;
   background-color:rgb(200,200,255);
 }
 
-.to-do-name{
+.task-name{
   width:100%;
   text-align: center;
-}
-
-.task-bottom-line{
-  display: flex;
 }
 
 .task-link{
@@ -394,7 +390,11 @@ header{
   font-weight: bold;
 }
 
-.to-do-time{
+.task-bottom-line{
+  display: flex;
+}
+
+.task-length{
   color:black;
   padding-left: 10px;
   font-weight: bold;
@@ -409,7 +409,7 @@ header{
   margin-left:15%;
 }
 
-.to-do-finish{
+.task-finish-index{
   margin:0 20px 5px auto;
   background-color: #e6ffe9;
   border: 1px solid #2f4f4f;
@@ -417,17 +417,17 @@ header{
   box-shadow: 0 2px black;
 }
 
-.to-do-finish :hover{
+.task-finish-index :hover{
   background-color: #99ff99;
 }
 
-.to-do-finish :active{
+.task-finish-index :active{
   position:relative;
   top:2px;
   box-shadow: none;
 }
 
-.finish-link{
+.link-to-finish-index{
   text-decoration: none;
   font-size: 20px;
   color:red;
@@ -465,7 +465,7 @@ header{
   margin:0 30px;
 }
 
-.link-add-event{
+.add-event{
   width:35%;
   margin:10px auto;
   text-align: center;
@@ -475,17 +475,17 @@ header{
   box-shadow: 0 3px black;
 }
 
-.link-add-event :hover{
+.add-event :hover{
   background-color: #dc143c;
 }
 
-.link-add-event :active{
+.add-event :active{
   position:relative;
   top:3px;
   box-shadow: none;
 }
 
-.event-add-link{
+.link-to-add-event{
   text-decoration: none;
   color:maroon;
   font-weight: bold;
@@ -584,6 +584,7 @@ header{
 }
 
 /*memory==============================================================================*/
+/*今日の予定へのリンク*/
 .back-to-index{
   width:100%;
   height:30px;
@@ -598,6 +599,7 @@ header{
   color:maroon;
 }
 
+/*タイトル*/
 .memory-title{
   width:100%;
   height:60px;
@@ -608,6 +610,7 @@ header{
   font-size: 60px;
 }
 
+/*タスクの予約リスト*/
 .memory-task-list{
   width:48%;
   margin-top:20px;
@@ -690,7 +693,7 @@ header{
   display: block;
 }
 
-/*-------------------------------------------------------*/
+/*イベントの予約リスト*/
 .memory-event-list{
   width:48%;
   margin-top:20px;

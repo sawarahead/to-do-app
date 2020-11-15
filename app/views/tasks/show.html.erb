@@ -1,11 +1,14 @@
 <div class="main">
   <div class="container">
 
+    <!-今日の予定に戻る->
     <div class="back-to-index">
       <%= link_to("←task・eventの一覧へ戻る","/home/index",class:"link-to-index")%>
     </div>
 
+    <!-タスクの詳細情報->
     <div class="task-show">
+
       <h2 class="show-title">task名：<u><%= @task.content %></u></h2>
 
       <div class="task-data">
@@ -43,16 +46,17 @@
         <div class="task-created-at">
           taskの登録日時：<%= @task.created_at.strftime("%Y年%m月%d日")%><%= @week[@task.created_at.wday]%>
         </div>
+
         <div class="task-updated-at">
           taskの最終更新日時：<%= @task.updated_at.strftime("%Y年%m月%d日") %><%= @week[@task.updated_at.wday]%>
         </div>
 
-        <div class="link-to-task-edit">
-          <%= link_to("編集","/tasks/#{params[:id]}/edit",class:"task-edit-link")%>
+        <div class="go-to-task-edit">
+          <%= link_to("編集","/tasks/#{params[:id]}/edit",class:"link-to-task-edit")%>
         </div>
 
-        <div class="link-to-task-finish">
-          <%= link_to("終わった！","/tasks/#{@task.id}/destroy",method:"post",class:"finish-task-link")%>
+        <div class="task-finish-show">
+          <%= link_to("終わった！","/tasks/#{@task.id}/destroy",method:"post",class:"link-to-finish-show")%>
         </div>
 
       </div>

@@ -1,60 +1,86 @@
 <div class="main">
   <div class="container">
 
+    <!-今日の予定に戻る->
     <div class="back-to-index">
       <%= link_to("←task・eventの一覧へ戻る","/home/index",class:"link-to-index")%>
     </div>
 
+    <!-ページタイトル->
     <h2 class="unfinished-title">未完了のtask</h2>
 
+    <!-未完了タスクのリスト->
     <div class="unfinished-list">
+      <!-昨日以前で未完了のタスクがある場合->
       <% if @unfinished_tasks.count>0%>
-      <% @unfinished_tasks.each do |unfinished_task|%>
-      <div class="unfinished-task">
-        <%if unfinished_task.unfinish == 0%>
-        <% if (!(unfinished_task.limit) || unfinished_task.limit - @datetime > 0) %>
-        <div class="unfinished-task-name">
-          task名：<%=link_to(unfinished_task.content,"/tasks/#{unfinished_task.id}",class:"task-link") %>
-        </div>
-        <div class="unfinished-task-date">
-          実行予定日：<%= unfinished_task.date.year.to_s%>年<%= unfinished_task.date.month.to_s%>月<%= unfinished_task.date.day.to_s%>日
-        </div>
-        <div class="unfinished-task-limit">
-          <%if unfinished_task.limit%>
-           〆切：<%=unfinished_task.limit%>
-          <%else%>
-           〆切：なし
+        <% @unfinished_tasks.each do |unfinished_task|%>
+        <div class="unfinished-task">
+          <!-unfinishカラムの値が０の（未完了扱いされていない）タスクが存在する場合->
+          <%if unfinished_task.unfinish == 0%>
+            <!-タスクに期限が設定されていない、もしくは期限がまだ残っているタスクがある場合->
+            <% if (!(unfinished_task.limit) || unfinished_task.limit - @datetime > 0) %>
+
+              <!-未完了タスクの名称、実行予定日、締め切り->
+              <div class="unfinished-task-name">
+                task名：<%=link_to(unfinished_task.content,"/tasks/#{unfinished_task.id}",class:"task-link") %>
+              </div>
+
+              <div class="unfinished-task-date">
+                実行予定日：<%= unfinished_task.date.year.to_s%>年<%= unfinished_task.date.month.to_s%>月<%= unfinished_task.date.day.to_s%>日
+              </div>
+
+              <div class="unfinished-task-limit">
+                <%if unfinished_task.limit%>
+                  〆切：<%=unfinished_task.limit.year.to_s%>年<%=unfinished_task.limit.month.to_s%>月<%=unfinished_task.limit.day.to_s%>日<%=unfinished_task.limit.hour.to_s%>時<%=unfinished_task.limit.min.to_s%>分
+                      （<%=((unfinished_task.limit-@datetime)/(60*60)).to_i%>時間前）
+                <%else%>
+                  〆切：なし
+                <%end%>
+              </div>
+
+              <!-今日のto-do-listに追加->
+              <div class="add-today">
+                <%= link_to("今日のtaskに追加する","/tasks/#{unfinished_task.id}/add", method:"post",class:"add-today-link")%>
+              </div>
+
+              <!-完了ボタン->
+              <div class="task-finish-unfinished">
+                <%= link_to("終わった！","/tasks/#{unfinished_task.id}/destroy",method:"post",class:"link-to-finish-unfinished")%>
+              </div>
+
+            <!-タスクの期限が切れている場合->
+            <%elsif unfinished_task.limit - @datetime < 0 %>
+
+              <!-同上->
+              <div class="unfinished-task-name">
+                task名：<%=link_to(unfinished_task.content,"/tasks/#{unfinished_task.id}",class:"task-link") %>(<font color="red">期限切れ！！</font>)
+              </div>
+
+              <div class="unfinished-task-date">
+                実行予定日：<%= unfinished_task.date.year.to_s%>年<%= unfinished_task.date.month.to_s%>月<%= unfinished_task.date.day.to_s%>日
+              </div>
+
+              <div class="unfinished-task-limit">
+                〆切：<%=unfinished_task.limit.year.to_s%>年<%=unfinished_task.limit.month.to_s%>月<%=unfinished_task.limit.day.to_s%>日<%=unfinished_task.limit.hour.to_s%>時<%=unfinished_task.limit.min.to_s%>分
+              </div>
+
+              <div class="add-today">
+                <%= link_to("今日のtaskに追加する","/tasks/#{unfinished_task.id}/add", method:"post",class:"add-link")%>
+              </div>
+
+              <div class="link-to-finish-unfinished">
+                <%= link_to("完了！","/tasks/#{unfinished_task.id}/destroy",method:"post",class:"finish-link-from-unfinished")%>
+              </div>
+            <%end%>
           <%end%>
         </div>
-        <div class="add-today">
-          <%= link_to("今日のtaskに追加する","/tasks/#{unfinished_task.id}/add", method:"post",class:"add-link")%>
-        </div>
-        <div class="link-to-finish-unfinished">
-          <%= link_to("完了！","/tasks/#{unfinished_task.id}/destroy",method:"post",class:"finish-link-from-unfinished")%>
-        </div>
-        <%elsif unfinished_task.limit - @datetime < 0 %>
-        <div class="unfinished-task-name">
-          task名：<%=link_to(unfinished_task.content,"/tasks/#{unfinished_task.id}",class:"task-link") %>(<font color="red">期限切れ！！</font>)
-        </div>
-        <div class="unfinished-task-date">
-          実行予定日：<%= unfinished_task.date.year.to_s%>年<%= unfinished_task.date.month.to_s%>月<%= unfinished_task.date.day.to_s%>日
-        </div>
-        <div class="unfinished-task-limit">
-           〆切：<%=unfinished_task.limit%>
-        </div>
-        <div class="add-today">
-          <%= link_to("今日のtaskに追加する","/tasks/#{unfinished_task.id}/add", method:"post",class:"add-link")%>
-        </div>
-        <div class="link-to-finish-unfinished">
-          <%= link_to("完了！","/tasks/#{unfinished_task.id}/destroy",method:"post",class:"finish-link-from-unfinished")%>
-        </div>
         <%end%>
-        <%end%>
-      </div>
-      <%end%>
+
+      <!-昨日以前で未完了タスクがない場合->
       <%else%>
-      <div class="unfinished-empty">現在、未完了のtaskはありません。</div>
+        <div class="unfinished-empty">現在、未完了のtaskはありません。</div>
       <%end%>
     </div>
+
   </div>
 </div>

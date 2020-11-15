@@ -39,7 +39,7 @@ before_action :ensure_correct_user,{only:[:show,:edit,:update,:destroy,:delete,:
     if @task.save
       redirect_to("/home/index")
     else
-      render("task/new")
+      render("tasks/new")
     end
   end
 

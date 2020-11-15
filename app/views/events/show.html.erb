@@ -9,9 +9,11 @@
 
     <!-イベントの詳細情報->
     <div class="event-show">
+
       <h2 class="event-title">event名：<u><%= @event.content %></u></h2>
 
       <div class="event-data">
+        
         <div class="event-date">
           <%if @event.repeat==8%>
             予定日：<%=@event.date.year.to_s%>年<%=@event.date.month.to_s%>月<%=@event.date.day.to_s%>日<%=@week[@event.date.wday]%>

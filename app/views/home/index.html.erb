@@ -6,13 +6,13 @@
 
     <!-予約中のタスク、イベント確認ページへ移動->
     <div class="go-to-memory">
-      <%= link_to("予約状況を確認する","/tasks/memory",class:"link-to-memory") %>
+      <%= link_to("予約状況を確認する","/home/memory",class:"link-to-memory") %>
     </div>
 
     <!-前日までの未達成タスクの報告・確認ページへ移動->
-    <% if @count > 0 %>
+    <% if @unfinish_count > 0 %>
     <div class="unfinished-alert">
-      <%= link_to("！！未完了のtaskが#{@count}件あります！！","/tasks/unfinished",class:"link-to-unfinished")%>
+      <%= link_to("！！未完了のtaskが#{@unfinish_count}件あります！！","/tasks/unfinished",class:"link-to-unfinished")%>
     </div>
     <%end%>
 
@@ -20,13 +20,13 @@
     <div class="today-achievement">
       <div class="today-achievement-rate">
         <%if @today_all_task.count>0%>
-          本日のタスク達成率：<font color="lime"><%=@today_all_task.where(check:1).count*100/@today_all_task.count%></font>％
+          本日のタスク達成率：<font color="lime"><%=@today_all_tasks.where(check:1).count*100/@today_all_tasks.count%></font>％
         <%else%>
           本日のタスク達成率：<font color="lime">0</font>%
         <%end%>
       </div>
       <div class="today-task-count">
-        （本日の登録タスク数：<%=@today_all_task.count%>個　　　本日の終了済みタスク数：<%=@today_all_task.where(check:1).count%>個）
+        （本日の登録タスク数：<%=@today_all_tasks.count%>個　　　本日の終了済みタスク数：<%=@today_all_tasks.where(check:1).count%>個）
       </div>
     </div>
 
@@ -46,8 +46,10 @@
           <% if @tasks.where(date:@today).count >0 %>
             <% @tasks.each do |task| %>
             <div class="to-do">
+              <!-基本は実行予定日が今日のものを表示する。ただし、毎週繰り返し機能を使ったものは今日以前かつ今日の曜日のものを表示->
               <% if ((task.repeat == 8 || task.repeat == 7) && task.date == @today) || (task.repeat == @today.wday && task.date <= @today) %>
                 <div class="to-do-name">
+                  <!-タスクの名前と締め切りの表示->
                   <% if task.limit%>
                     <% if task.limit-@datetime >= 60*60*24%>
                       <%= link_to(task.content,"/tasks/#{task.id}",class:"task-link") %>(<font color="red">〆切<%=((task.limit-@datetime)/(60*60*24)).to_i%>日前</font>)
@@ -61,6 +63,7 @@
                   <%end%>
                 </div>
 
+                <!-目安時間、繰り返し設定、完了ボタン->
                 <div class="task-bottom-line">
                   <div class="to-do-time">
                     目安時間：<%= task.time %>分
@@ -76,6 +79,7 @@
             </div>
             <%end%>
 
+          <!-今日予定しているタスクがない場合->
           <%else%>
             <div class="no-task">現在予定しているtaskはありません。</div>
           <%end%>
@@ -91,14 +95,17 @@
             <%= link_to("イベントの追加","/events/new",class:"event-add-link") %>
           </div>
 
+          <!-単発かつ今日のイベント、毎日のイベント、今日の曜日に毎週あるイベントを表示->
           <% if @events.where(repeat:8, date:@today).count >0 || @events.where(repeat:@today.wday).count>0 || @events.where(repeat:7).count>0 %>
             <% @events.each do |event|%>
             <div class="event">
               <% if (event.repeat==8 && event.date == @today) || event.repeat == @today.wday || event.repeat == 7%>
+                <!-イベント名->
                 <div class="event-name">
                   <%= link_to(event.content,"/events/#{event.id}",class:"event-link")%>
                 </div>
 
+                <!-イベントの開始時間（、終了時間）->
                 <div class="event-time">
                   <%if event.end_time %>
                     時間：<%=event.start_time.strftime('%H:%M')%>〜<%=event.end_time.strftime('%H:%M')%>
@@ -107,6 +114,7 @@
                   <%end%>
                 </div>
 
+                <!-イベントの開催場所->
                 <div class="event-place">
                   <% if event.place <= 1%>
                     場所：<%=@place[event.place]%>
@@ -125,6 +133,7 @@
                   <%end%>
                 </div>
 
+                <!-繰り返し設定->
                 <div class="event-repeat-type">
                   <%= @repeat[event.repeat]%>
                 </div>
@@ -132,6 +141,7 @@
             </div>
             <%end%>
 
+          <!-今日予定しているイベントがない場合->
           <%else%>
             <div class="no-event">現在予定しているeventはありません。</div>
           <%end%>
@@ -144,6 +154,7 @@
         <div><font color="red">赤文字</font>は未達成。黒文字は達成済み。</div>
 
         <% for i in 1..7 do%>
+        　<!-日付->
           <div class="achievement-date">
             <%= (@today-i).month.to_s %>月<%= (@today-i).day.to_s%>日<%= @week[(@today-i).wday]%>
           </div>
@@ -152,6 +163,7 @@
             <div class="achievement-list">
               <font color="olive">タスク一覧</font>
 
+              <!-登録したタスクがあり、それが完了しているなら黒字、未完了なら赤字で表示->
               <%if @user_tasks.where("date=?",@today-i).count>0%>
                 <% @user_tasks.each do |task|%>
                 <div class="achievement-list-contents">
@@ -164,11 +176,14 @@
                   <%end%>
                 </div>
                 <%end%>
+
+              <!-登録したタスクがない場合->
               <%else%>
                 <div>登録されたタスクがありません。</div>
               <%end%>
             </div>
 
+            <!-その日のタスクの達成率（達成数/登録タスク数*100）、総時間、完了済み総時間、時間達成率（完了済み総時間/総時間*100）->
             <div class="achievement-details">
               <font color="purple">詳細データ</font>
 

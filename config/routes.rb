@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   get 'tasks/new'
-  get 'tasks/memory'
   get 'tasks/weekly'
   get 'tasks/unfinished'
   post 'tasks/create'
@@ -29,6 +28,7 @@ Rails.application.routes.draw do
   post 'logout' => "users#logout"
 
   get 'home/index'
+  get 'home/memory'
   get '/' => 'home#top'
 
 end

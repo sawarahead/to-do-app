@@ -1,9 +1,9 @@
-/*設定の変更*/
+/*設定の変更======================================================================*/
 ul, li {
   list-style:none;
 }
 
-/*共通*/
+/*共通===========================================================================*/
 body{
   background-color:#ffffee;
 }
@@ -12,7 +12,7 @@ body{
   padding-top:80px;
 }
 
-/*ヘッダー*/
+/*ヘッダー========================================================================*/
 header{
   height:80px;
   position:absolute;
@@ -93,7 +93,7 @@ header{
   color: #ff3333;
 }
 
-/*トップページ*/
+/*top(トップページ)======================================================================*/
 .top-main{
   text-align:center;
   padding:150px 0 100px 0;
@@ -166,20 +166,7 @@ header{
   margin-top:30px;
 }
 
-/*登録・ログインフォーム*/
-/*LINEログインの機能でコールバックされたページのCSSのみ別ファイルに記述*/
-.user-name, .user-picture, .user-password{
-  font-size:30px;
-}
-
-.pass-alert{
-  color:red;
-}
-
-.login-submit{
-  margin-top:20px;
-}
-
+/*signup_branch（新規登録方法の選択ページ）=================================================================*/
 .normal-signup{
   margin:20px auto;
   text-align: center;
@@ -218,6 +205,20 @@ header{
   font-size: 30px;
 }
 
+
+/*normal_signup,normal_login（新規登録・ログインページ）===========================================================*/
+/*LINEログインの機能でコールバックされたページのCSSは"line_login.scss"に記述*/
+.user-name, .user-picture, .user-password{
+  font-size:30px;
+}
+
+.pass-alert{
+  color:red;
+}
+
+.login-submit{
+  margin-top:20px;
+}
 
 /*フラッシュ*/
 .flash{

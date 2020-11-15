@@ -9,18 +9,22 @@ require "date"
   def top
   end
 
-  def index
+  def index    #個別のリストの機能はtaskとeventのコントローラーで定義
+    #配列
     @week=["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"]
+    @repeat=["日","月","火","水","木","金","土","毎","単"]
+    @place=["未定","自宅"]
+    #今日の日付
     @today=Date.today
     @datetime=DateTime.now
-    @tasks=Task.where(user_id: @current_user.id).where(check:0)
-    @count=Task.where("date < ?",@today).where(user_id: @current_user.id).where(check:0).where(unfinish:0).count
-    @events=Event.where(user_id: @current_user.id).order(:start_time)
-    @repeat=["日","月","火","水","木","金","土","毎","単"]
-    @total_task_time=Task.where("date=?",@today).where(user_id: @current_user.id).where(check:0).sum(:time)
-    @place=["未定","自宅"]
-    @today_all_task=Task.where("date=?",@today).where(user_id: @current_user.id)
-    @user_tasks=Task.where(user_id: @current_user.id)
+    #タスク達成率・to-do-list関連変数
+    @user_tasks=Task.where(user_id: @current_user.id)                           #ユーザーが登録したタスク
+    @today_all_tasks=@user_tasks.where("date=?",@today)                         #今日表示予定のタスク
+    @tasks=@user_tasks.where(check:0)                                           #未完了のタスク
+    @unfinish_count=@tasks.where("date < ?",@today).where(unfinish:0).count     #昨日以前で未完了のタスクの数
+    @total_task_time=@tasks.where("date=?",@today).sum(:time)                   #今日登録しているタスクの総時間
+    #event-list関連変数
+    @events=Event.where(user_id: @current_user.id).order(:start_time)           #ユーザーが登録したイベントを開始時間順に取得
   end
 
   def signup_branch

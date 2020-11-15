@@ -28,6 +28,7 @@ class LineLoginController < ApplicationController
 
     @response=JWT.decode(JSON.parse(response.body)["id_token"],ENV['LINElogin_CHANNEL_SECRET'])
 
+    @user=User.find_by(name:params[:name])
   end
 
   def line_signup

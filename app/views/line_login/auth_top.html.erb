@@ -20,11 +20,17 @@
       <div>
         <input type="password" name="password" value="<%=@response[0]["sub"]%>">
       </div>
-      <div><font color="red">LINEアカウントを利用する場合、ユーザーパスワードは自動で発行されます。\n公式アプリとの連携に必要な情報ですので、決して変更しないでください。</font></div>
+      <div><font color="red">LINEアカウントを利用する場合、ユーザーパスワードは自動で発行されます。公式アプリとの連携に必要な情報ですので、決して変更しないでください。</font></div>
 
-    <div class="login-submit">
-      <input type="submit" value="ユーザー情報を登録">
-    </div>
+    <%if @user%>
+      <div class="login-submit">
+        <input type="submit" value="ユーザー情報を確定">
+      </div>
+    <%else%>
+      <div class="login-submit">
+        <input type="submit" value="ユーザー情報を登録">
+      </div>
+    <%end%>
   <%end%>
 
 </div>

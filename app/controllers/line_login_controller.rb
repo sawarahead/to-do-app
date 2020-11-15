@@ -13,7 +13,7 @@ class LineLoginController < ApplicationController
     request.set_form_data(
       "grant_type" => "authorization_code",
       "code" => params[:code],
-      "redirect_uri" => "https://infinite-fjord-36648.herokuapp.com/auth",
+      "redirect_uri" => ENV["APP_URL"],
       "client_id" => ENV["LINElogin_CHANNEL_TOKEN"],
       "client_secret" => ENV["LINElogin_CHANNEL_SECRET"]
     )
@@ -34,8 +34,8 @@ class LineLoginController < ApplicationController
    @user=User.find_by(name:params[:name])
 
    if @user && @user.authenticate(params[:password])
-     flash[:notice]="既に登録済みのユーザーです。"
-     render("line_login/auth_top")
+     session[:user_id]=@user.id
+     redirect_to("/home/index")
    else
      @user_new=User.new(name:params[:name],password:params[:password],picture:params[:picture])
      if @user_new.save

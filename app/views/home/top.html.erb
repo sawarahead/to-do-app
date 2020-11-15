@@ -6,20 +6,33 @@
 
   <!-ログイン済みのユーザーに表示->
   <%if session[:user_id]%>
-  <!-今日の予定に移動->
-  <div class="start-btn">
-    <%= link_to("今日のto-do-listを見に行く","/home/index",class:"top-link") %>
-  </div>
+    <!-今日の予定に移動->
+    <div class="go-to-index">
+      <%= link_to("今日のto-do-listを見に行く","/home/index",class:"link-to-index") %>
+    </div>
 
-  <div class="click-message">
-    ↑　↑　↑　↑　クリックしてスタート　↑　↑　↑　↑
-  </div>
+    <div class="click-message">
+      ↑　↑　↑　↑　クリックしてスタート　↑　↑　↑　↑
+    </div>
 
   <!-ログインしていないユーザーに表示->
   <%else%>
-  <!-新規登録ページへ移動->
-  <div class="start-new">新規登録の方は<%=link_to("こちら","/signup")%></div>
-  <div class="start-re">登録済みの方は<%=link_to("こちら","/home/login")%></div>
+    <!-ログイン->
+    <div>↓↓↓ログインのタイプを下から選んでください↓↓↓</div>
+    <div class="normal-login">
+      <%=link_to("Normal","/normal_login",class:"normal-login-btn")%>
+    </div>
+
+    <div class="or">or</div>
+
+    <div class="line-login">
+      <a href="https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1654987275&redirect_uri=https://infinite-fjord-36648.herokuapp.com/auth&state=sawarahead3050&bot_prompt=normal&scope=profile%20openid&nonce=89913050tm"><img src="btn_login_base.png"></img></a>
+    </div>
+
+
+    <div>---------------------------------------------------------------------------</div>
+    <!-新規登録ページへ移動->
+    <div class="go-to-signup">新規登録の方は<%=link_to("こちら","/signup_branch")%></div>
   <%end%>
 
 </div>

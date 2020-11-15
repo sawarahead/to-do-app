@@ -23,13 +23,13 @@ require "date"
     @user_tasks=Task.where(user_id: @current_user.id)
   end
 
-  def signup
+  def signup_branch
   end
 
-  def normal
+  def get_normal_signup
   end
 
-  def normal_signup
+  def post_normal_signup
    @user=User.find_by(name:params[:name])
 
    if @user && @user.authenticate(params[:password])
@@ -46,10 +46,10 @@ require "date"
    end
   end
 
-  def login
+  def normal_login
   end
 
-  def login_check
+  def normal_login_check
     @user=User.find_by(name:params[:name])
 
     if @user && @user.authenticate(params[:password])

@@ -21,6 +21,7 @@ class LinebotController < ApplicationController
     end
 
     events = client.parse_events_from(body)
+    #登録中のタスク・イベントの中で今日の日付のものを取得
     tasks = Task.where(date:Date.today).where(check:0)
     plans= Event.where(date:Date.today)
 

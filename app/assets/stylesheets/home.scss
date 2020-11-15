@@ -116,7 +116,7 @@ header{
   font-size:40px;
 }
 
-.start-btn {
+.go-to-index {
   padding:0 20px;
   width:30%;
   margin:0 auto;
@@ -124,31 +124,13 @@ header{
   font-size:30px;
 }
 
-.click-message{
-  font-weight: bold;
-}
-
-.top-link{
+.link-to-index{
   text-decoration: none;
   color:maroon;
 }
 
-.start-new, .start-re{
-  font-size: 30px;
-  margin-top:30px;
-}
-
-/*登録・ログイン系*/
-.user-name, .user-picture, .user-password{
-  font-size:30px;
-}
-
-.pass-alert{
-  color:red;
-}
-
-.login-submit{
-  margin-top:20px;
+.click-message{
+  font-weight: bold;
 }
 
 .normal-login{
@@ -169,6 +151,73 @@ header{
   line-height: 80px;
   font-size: 30px;
 }
+
+.or{
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.line-login{
+  margin-top:20px;
+}
+
+.go-to-signup{
+  font-size: 30px;
+  margin-top:30px;
+}
+
+/*登録・ログインフォーム*/
+/*LINEログインの機能でコールバックされたページのCSSのみ別ファイルに記述*/
+.user-name, .user-picture, .user-password{
+  font-size:30px;
+}
+
+.pass-alert{
+  color:red;
+}
+
+.login-submit{
+  margin-top:20px;
+}
+
+.normal-signup{
+  margin:20px auto;
+  text-align: center;
+  width:300px;
+  height:80px;
+  background-color:gray;
+  border:1px solid gray;
+  border-radius: 15px;
+}
+
+.normal-signup-btn{
+  text-decoration: none;
+  display: block;
+  color:white;
+  font-weight:bold;
+  line-height: 80px;
+  font-size: 30px;
+}
+
+.line-signup{
+  margin:20px auto;
+  text-align: center;
+  width:300px;
+  height:80px;
+  background-color:lime;
+  border:1px solid lime;
+  border-radius: 15px;
+}
+
+.line-signup-btn{
+  text-decoration: none;
+  display: block;
+  color:white;
+  font-weight:bold;
+  line-height: 80px;
+  font-size: 30px;
+}
+
 
 /*フラッシュ*/
 .flash{

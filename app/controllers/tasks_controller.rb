@@ -5,7 +5,7 @@ require "date"
 before_action :authenticate_user
 before_action :ensure_correct_user,{only:[:show,:edit,:update,:destroy,:delete,:add]}
 
-  def ensure_correct_user
+  def ensure_correct_user                                    #データを登録したユーザー以外に対して登録データの閲覧を禁止
     @task=Task.find_by(id: params[:id])
     if @task.user_id!=@current_user.id
       redirect_to("/")
@@ -43,32 +43,32 @@ before_action :ensure_correct_user,{only:[:show,:edit,:update,:destroy,:delete,:
     end
   end
 
-  def destroy
+  def destroy      #基本的には物理削除。「終わった！」ボタンが押された際に実行。
     @task=Task.find_by(id:params[:id])
     @today=Date.today
-    if @task.repeat != 8
-      @task_copy = @task.dup
+    if @task.repeat != 8                       #繰り返し機能が設定されている場合は「終わった！」ボタンが押されても即座に削除はしない
+      @task_copy = @task.dup                   #データを複製
       if @task.repeat == 7
-        @task_copy.date = @today + 1
-        @task_copy.save
-        @task.check = 1
-        @task.save
+        @task_copy.date = @today + 1           #複製したデータの実行予定日を、毎日繰り返しなら明日、毎週繰り返しなら来週の日付に変更
+        @task_copy.save                        #複製データを保存
+        @task.check = 1                        #複製元のデータの「checkカラム」の値を1（完了扱い）に変更
+        @task.save                             #複製元データを保存
       else
         @task_copy.date = @today + 7
         @task_copy.save
         @task.check = 1
         @task.save
       end
-    else
+    else                                       #繰り返し設定がされてない場合はデータの複製は行わず、「checkカラム」を１に変更して保存
       @task.check = 1
       @task.save
     end
     redirect_to("/home/index")
-    Task.where("date<?",@today-7).destroy_all
+    Task.where("date<?",@today-7).destroy_all   #実行予定日が１週間以上前のデータを削除
   end
 
-  def delete
-    @task=Task.find_by(id:params[:id])
+  def delete      #「予約を消す」ボタンが押された際に実行
+    @task=Task.find_by(id:params[:id])        #即座に登録データを削除する
     @task.destroy
     redirect_to("/tasks/memory")
   end
@@ -85,14 +85,14 @@ before_action :ensure_correct_user,{only:[:show,:edit,:update,:destroy,:delete,:
 
   def update
     @task=Task.find_by(id:params[:id])
-    if params[:repeat]=="9"
+    if params[:repeat]=="9"                            #繰り返し機能に関して変更がない場合
       @task.content=params[:content]
       @task.detail=params[:detail]
       @task.time=params[:planed_time]
       @task.date=params[:date]
       @task.limit=params[:limit]
       @task.save
-    else
+    else                                               #繰り返し機能に関して変更がある場合
       @task.content=params[:content]
       @task.detail=params[:detail]
       @task.time=params[:planed_time]
@@ -113,11 +113,11 @@ before_action :ensure_correct_user,{only:[:show,:edit,:update,:destroy,:delete,:
   def add
     @today=Date.today
     @task=Task.find_by(id:params[:id])
-    @task_copy = @task.dup
-    @task_copy.unfinish=1
-    @task_copy.save
-    @task.date=@today
-    @task.save
+    @task_copy = @task.dup                               #データを複製
+    @task_copy.unfinish=1                                #複製したデータの「unfinishカラム」の値を１(未完了扱い)に変更
+    @task_copy.save                                      #複製したデータを保存
+    @task.date=@today                                    #複製元のデータの実行予定日を今日の日付に変更
+    @task.save                                           #複製元データを保存
     redirect_to("/tasks/unfinished")
   end
 end

@@ -5,7 +5,7 @@ class EventsController < ApplicationController
   before_action :authenticate_user
   before_action :ensure_correct_user,{only:[:show,:edit,:destroy,:update]}
 
-  def ensure_correct_user
+  def ensure_correct_user                              #データを登録したユーザー以外に対して登録データの閲覧を禁止
     @event=Event.find_by(id:params[:id])
     if @event.user_id!=@current_user.id
       redirect_to("/")
@@ -36,7 +36,7 @@ class EventsController < ApplicationController
     end
   end
 
-  def destroy   #物理削除
+  def destroy   
     @event=Event.find_by(id:params[:id])
     @event.destroy
     redirect_to("/home/index")
@@ -56,9 +56,7 @@ class EventsController < ApplicationController
 
   def update
     @event=Event.find_by(id:params[:id])
-
-    #イベント会場・繰り返し機能に関して変更しない場合
-    if params[:repeat]=="9" && params[:place]=="4"
+    if params[:repeat]=="9" && params[:place]=="4"                      #イベント会場・繰り返し機能に関して変更しない場合
       @event.content=params[:content]
       @event.date=params[:date]
       @event.start_time=params[:start_time]
@@ -69,9 +67,7 @@ class EventsController < ApplicationController
       else
        render("events/edit")
       end
-
-    #イベント会場に関してのみ変更がある場合
-    elsif params[:repeat]=="9" && params[:place]!="4"
+    elsif params[:repeat]=="9" && params[:place]!="4"                   #イベント会場に関してのみ変更がある場合
       @event.content=params[:content]
       @event.place=params[:place]
       @event.place_detail=params[:place_detail]
@@ -84,9 +80,7 @@ class EventsController < ApplicationController
       else
        render("events/edit")
       end
-
-    #繰り返し機能に関してのみ変更がある場合
-    elsif params[:repeat]!="9" && params[:place]=="4"
+    elsif params[:repeat]!="9" && params[:place]=="4"                  #繰り返し機能に関してのみ変更がある場合
       @event.content=params[:content]
       @event.date=params[:date]
       @event.start_time=params[:start_time]
@@ -98,9 +92,7 @@ class EventsController < ApplicationController
       else
        render("events/edit")
       end
-
-    #全てに変更がある場合
-　　 else
+　　 else                                                               #全てに変更がある場合
       @event.content=params[:content]
       @event.place=params[:place]
       @event.place_detail=params[:place_detail]

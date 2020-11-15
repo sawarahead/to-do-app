@@ -31,7 +31,7 @@ class LinebotController < ApplicationController
 
       elsif event.message['text'].include?("使い方")
         response="※このチャットの使い方※
-        \n①このアプリのサイトでLINE loginを行ってください。
+        \n①アプリのwebサイトでLINEアカウントを利用してユーザー登録を行ってください。
         \n②webサイト上で日々のto-doやeventを登録してください。
         \n③このチャットでLINEの登録名を入力してください。
         \n④今日予定しているto-doとeventの一覧をお伝えします。
@@ -42,7 +42,19 @@ class LinebotController < ApplicationController
         user=User.find_by(name:event.message['text'])
         if user
           if user.authenticate(event['source']['userId'])
-            response="本日のto-do:\n#{tasks.where(user_id:user.id).pluck(:content)}\n本日のevent:\n#{plans.where(user_id:user.id).pluck(:content)}}"
+            if tasks.where(user_id:user.id)
+              if plans.where(user_id:user.id)
+                response="本日のto-do:\n#{tasks.where(user_id:user.id).pluck(:content)}\n本日のevent:\n#{plans.where(user_id:user.id).pluck(:content)}}"
+              else
+                response="本日のto-do:\n#{tasks.where(user_id:user.id).pluck(:content)}\n本日のevent:\n登録がありません。}"
+              end
+            else
+              if plans.where(user_id:user.id)
+                response="本日のto-do:\n登録がありません。\n本日のevent:\n#{plans.where(user_id:user.id).pluck(:content)}}"
+              else
+                response="本日のto-do:\n#登録がありません。\n本日のevent:\n登録がありません。}"
+              end
+            end
           else
             response="データにアクセスする権限がありません。"
           end

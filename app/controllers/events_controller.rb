@@ -36,7 +36,7 @@ class EventsController < ApplicationController
     end
   end
 
-  def destroy
+  def destroy   #物理削除
     @event=Event.find_by(id:params[:id])
     @event.destroy
     redirect_to("/home/index")

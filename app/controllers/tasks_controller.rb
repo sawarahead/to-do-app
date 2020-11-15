@@ -78,14 +78,6 @@ before_action :ensure_correct_user,{only:[:show,:edit,:update,:destroy,:delete,:
     @week=["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"]
   end
 
-  def memory
-    @tasks=Task.where(user_id: @current_user.id).where(check:0).where(unfinish:0)
-    @events=Event.where(user_id: @current_user.id)
-    @today=Date.today
-    @datetime=DateTime.now
-    @week=["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"]
-  end
-
   def edit
     @task=Task.find_by(id:params[:id])
     @repeat_day=["毎週日曜日","毎週月曜日","毎週火曜日","毎週水曜日","毎週木曜日","毎週金曜日","毎週土曜日","毎日","なし"]

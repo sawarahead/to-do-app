@@ -18,10 +18,10 @@
 
       <ul class="header-menus">
         <% if session[:user_id] %>
-          <li class="header-item">
+          <li class="header-btn">
             <%= link_to("今日の予定","/home/index",class:"header-link-today")%>
           </li>
-          <li class="header-item">
+          <li class="header-btn">
             <%= link_to("１週間の予定","/tasks/weekly",class:"header-link-weekly")%>
           </li>
           <li class="header-user-name">

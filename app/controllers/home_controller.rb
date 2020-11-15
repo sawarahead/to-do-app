@@ -27,6 +27,14 @@ require "date"
     @events=Event.where(user_id: @current_user.id).order(:start_time)           #ユーザーが登録したイベントを開始時間順に取得
   end
 
+  def memory
+    @tasks=Task.where(user_id: @current_user.id).where(check:0).where(unfinish:0)
+    @events=Event.where(user_id: @current_user.id)
+    @today=Date.today
+    @datetime=DateTime.now
+    @week=["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"]
+  end
+
   def signup_branch
   end
 

@@ -21,6 +21,7 @@ header{
   background-color:green;
 }
 
+/*ロゴ*/
 .header-logo{
   position:absolute;
   left:20px;
@@ -29,6 +30,7 @@ header{
   line-height:80px;
 }
 
+/*ロゴ以外*/
 .header-menus{
   position:absolute;
   right:0;
@@ -36,7 +38,8 @@ header{
   font-size:30px;
 }
 
-.header-item{
+/*「今日の予定」と「１週間の予定」へのボタン*/
+.header-btn{
   text-align: center;
   width:210px;
   margin-right:20px;
@@ -49,7 +52,7 @@ header{
   line-height:40px;
 }
 
-.header-item :active{
+.header-btn :active{
   position:relative;
   top:3px;
   box-shadow: none;
@@ -71,6 +74,7 @@ header{
   padding-left:8px;
 }
 
+/*ログイン中のユーザー情報*/
 .header-user-name{
   position:absolute;
   right:130px;
@@ -80,6 +84,7 @@ header{
   line-height:80px;
 }
 
+/*ログアウト*/
 .logout{
   position:absolute;
   right:20px;
@@ -116,6 +121,7 @@ header{
   font-size:40px;
 }
 
+/*今日の予定へのリンク*/
 .go-to-index {
   padding:0 20px;
   width:30%;
@@ -133,6 +139,7 @@ header{
   font-weight: bold;
 }
 
+/*一般ユーザーのログインリンク*/
 .normal-login{
   margin:20px auto;
   text-align: center;
@@ -157,16 +164,19 @@ header{
   font-weight: bold;
 }
 
+/*LINEアカウント利用ユーザーのログインリンク*/
 .line-login{
   margin-top:20px;
 }
 
+/*新規登録方法選択ページへのリンク*/
 .go-to-signup{
   font-size: 30px;
   margin-top:30px;
 }
 
 /*signup_branch（新規登録方法の選択ページ）=================================================================*/
+/*一般の新規登録*/
 .normal-signup{
   margin:20px auto;
   text-align: center;
@@ -186,6 +196,7 @@ header{
   font-size: 30px;
 }
 
+/*LINEアカウントを利用した新規登録*/
 .line-signup{
   margin:20px auto;
   text-align: center;
@@ -232,7 +243,7 @@ header{
 }
 
 
-/*index=============================================================================*/
+/*index（今日の予定）=============================================================================*/
 .today-date{
   width:100%;
   height:60px;
@@ -244,6 +255,7 @@ header{
   font-size: 60px;
 }
 
+/*予約確認ページへのリンク*/
 .go-to-memory{
   width:25%;
   height:50px;
@@ -273,6 +285,7 @@ header{
   display:block;
 }
 
+/*未完了タスクの告知と未完了タスク確認ページへのリンク*/
 .unfinished-alert{
   text-align: center;
   width:40%;
@@ -291,6 +304,7 @@ header{
   display:block;
 }
 
+/*今日のタスク達成率*/
 .today-achievement{
   text-align: center;
 }
@@ -304,7 +318,7 @@ header{
   font-size: 20px;
 }
 
-/*-------------------------------------------------------*/
+/*to-do-list*/
 .to-do-list{
   width:48%;
   margin-top:20px;
@@ -427,8 +441,8 @@ header{
   padding:10px 0;
 }
 
-/*-------------------------------------------------------*/
 
+/*event-list*/
 .event-list{
   width:48%;
   margin-top:20px;
@@ -533,7 +547,7 @@ header{
 }
 
 
-/*-------------------------------------------------------*/
+/*直近のタスク達成率*/
 .weekly-achievement{
   clear:both;
   text-align: center;
@@ -567,4 +581,165 @@ header{
   text-align: center;
   border:1px solid black;
   font-size: 20px;
+}
+
+/*memory==============================================================================*/
+.back-to-index{
+  width:100%;
+  height:30px;
+  line-height: 30px;
+  font-size: 25px;
+  text-align: center;
+  padding-top: 20px;
+}
+
+.link-to-index{
+  text-decoration: none;
+  color:maroon;
+}
+
+.memory-title{
+  width:100%;
+  height:60px;
+  padding:10px 0;
+  margin:0;
+  text-align: center;
+  font-weight: bold;
+  font-size: 60px;
+}
+
+.memory-task-list{
+  width:48%;
+  margin-top:20px;
+  margin-left: 1%;
+  background-color: rgb(230,230,255);
+  border:1px solid rgb(230,230,255);
+  border-radius:10px;
+  float:left;
+}
+
+.memory-name-task{
+  font-size:40px;
+  font-weight: bold;
+  text-align: center;
+  color:blue;
+  margin:0;
+}
+
+.memory-task-item{
+  margin:0 30px;
+}
+
+.memory-task{
+  position:relative;
+  margin-bottom:5px;
+  border-radius:10px;
+  background-color:rgb(200,200,255);
+  padding-bottom: 3px;
+}
+
+.memory-task-name{
+  width:80%;
+  margin:5px auto;
+  text-align: center;
+  font-size:25px;
+}
+
+.memory-task-date{
+  font-size: 20px;
+  position:absolute;
+  left:40px;
+  top:50%;
+  transform: translate(0,-50%);
+}
+
+.memory-task-add-date{
+  font-size: 20px;
+  position:absolute;
+  right:40px;
+  top:50%;
+  transform:translate(0,-50%);
+}
+
+.memory-destroy{
+  font-size: 20px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top:30px;
+  width:23%;
+  background-color:#e6ffe9;
+  border:1px solid #2f4f4f;
+  border-radius: 7px;
+  box-shadow: 0 2px black;
+}
+
+.memory-destroy :hover{
+  background-color: #99ff99;
+}
+
+.memory-destroy :active{
+  position:relative;
+  top:2px;
+  box-shadow: none;
+}
+
+.memory-destroy-link{
+  text-decoration: none;
+  color:red;
+  display: block;
+}
+
+/*-------------------------------------------------------*/
+.memory-event-list{
+  width:48%;
+  margin-top:20px;
+  margin-right: 1%;
+  background-color: rgb(255,230,230);
+  border:1px solid rgb(255,230,230);
+  border-radius:10px;
+  float:right;
+}
+
+.memory-name-event{
+  font-size:40px;
+  font-weight: bold;
+  text-align: center;
+  color:#ff4f02;
+  margin:0;
+}
+
+.memory-event-item{
+  margin:0 30px;
+}
+
+.memory-event{
+  position:relative;
+  margin-bottom:5px;
+  border-radius:10px;
+  background-color:rgb(255,200,200);
+  padding-bottom: 3px;
+}
+
+.memory-event-name{
+  width:80%;
+  margin:5px auto;
+  text-align: center;
+  font-size:25px;
+}
+
+.memory-event-date{
+  font-size: 20px;
+  position:absolute;
+  left:40px;
+  top:50%;
+  transform:translate(0,-50%);
+}
+
+.memory-event-add-date{
+  font-size: 20px;
+  position:absolute;
+  right:40px;
+  top:50%;
+  transform:translate(0,-50%);
 }

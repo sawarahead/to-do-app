@@ -45,7 +45,7 @@ class LinebotController < ApplicationController
 
               response="本日のto-do:
               \n#{tasks.where(user_id:user.id).pluck(:content).each{ |task|
-                         f.print(task)}}
+                         p task}}
                          \n本日のevent:\n#{plans.where(user_id:user.id).pluck(:content)}}"
 
           else

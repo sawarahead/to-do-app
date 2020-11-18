@@ -44,7 +44,7 @@ class LinebotController < ApplicationController
           if user.authenticate(event['source']['userId'])
             user_tasks=tasks.where(user_id:user.id).pluck(:content)
             response="本日のto-do:
-              \n#{user_tasks}
+              \n#{user_tasks.all}
               \n本日のevent:\n#{plans.where(user_id:user.id).pluck(:content)}}"
 
           else

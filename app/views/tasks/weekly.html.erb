@@ -20,13 +20,16 @@
           <div class="weekly-task">task</div>
 
           <% @tasks.each do |task|%>
-          <!-登録されているのタスクが毎日繰り返しorその曜日に繰り返しor単発でその日に登録されている場合->
-          <% if (task.repeat == 7 && task.date - @today <= i) || (task.repeat == (@today+i).wday && task.date - @today <= i) || (task.repeat == 8 && task.date - @today == i) %>
-            <!-期限がないまたはその日が来ても期限切れにならない場合->
-            <% if !(task.limit) || task.limit.to_date - (@today+i) >= 0  %>
-              <div class="weekly-task-content">
-                <%= task.content %>
-              </div>
+          <!-タスクが完了していない場合->
+          <%= if task.check == 0%>
+            <!-登録されているのタスクが毎日繰り返しorその曜日に繰り返しor単発でその日に登録されている場合->
+            <% if (task.repeat == 7 && task.date - @today <= i) || (task.repeat == (@today+i).wday && task.date - @today <= i) || (task.repeat == 8 && task.date - @today == i) %>
+              <!-期限がないまたはその日が来ても期限切れにならない場合->
+              <% if !(task.limit) || task.limit.to_date - (@today+i) >= 0  %>
+                <div class="weekly-task-content">
+                  <%= task.content %>
+                </div>
+              <%end%>
             <%end%>
           <%end%>
           <%end%>

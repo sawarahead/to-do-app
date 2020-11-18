@@ -43,7 +43,7 @@ class LinebotController < ApplicationController
         if user
           if user.authenticate(event['source']['userId'])
 
-              response="本日のto-do:\n#{tasks.where(user_id:user.id).pluck(:content).each{|task| puts task.join}}\n本日のevent:\n#{plans.where(user_id:user.id).pluck(:content)}}"
+              response="本日のto-do:\n#{tasks.where(user_id:user.id).pluck(:content).each{|task| puts task.join("、")}}\n本日のevent:\n#{plans.where(user_id:user.id).pluck(:content)}}"
 
           else
             response="該当するユーザー名は存在しますが、データにアクセスする権限がありません。"

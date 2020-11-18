@@ -21,7 +21,7 @@
 
           <% @tasks.each do |task|%>
           <!-登録されているのタスクが毎日繰り返しorその曜日に繰り返しor単発でその日に登録されている場合->
-          <% if task.repeat == 7 || task.repeat == (@today+i).wday || (task.repeat == 8 && task.date - @today == i) %>
+          <% if (task.repeat == 7 && task.date - @today <= i) || (task.repeat == (@today+i).wday && task.date - @today <= i) || (task.repeat == 8 && task.date - @today == i) %>
             <!-期限がないまたはその日が来ても期限切れにならない場合->
             <% if !(task.limit) || task.limit.to_date - (@today+i) >= 0  %>
               <div class="weekly-task-content">

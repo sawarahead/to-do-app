@@ -42,21 +42,11 @@ class LinebotController < ApplicationController
         user=User.find_by(name:event.message['text'])
         if user
           if user.authenticate(event['source']['userId'])
-            if tasks.where(user_id:user.id)
-              if plans.where(user_id:user.id)
-                response="本日のto-do:\n#{tasks.where(user_id:user.id).pluck(:content)}\n本日のevent:\n#{plans.where(user_id:user.id).pluck(:content)}}"
-              else
-                response="本日のto-do:\n#{tasks.where(user_id:user.id).pluck(:content)}\n本日のevent:\n登録がありません。}"
-              end
-            else
-              if plans.where(user_id:user.id)
-                response="本日のto-do:\n登録がありません。\n本日のevent:\n#{plans.where(user_id:user.id).pluck(:content)}}"
-              else
-                response="本日のto-do:\n#登録がありません。\n本日のevent:\n登録がありません。}"
-              end
-            end
+            tasks.where(user_id:user.id).pluck(:content).each{|task|
+              response="本日のto-do:\n#{task}\n本日のevent:\n#{plans.where(user_id:user.id).pluck(:content)}}"
+            }
           else
-            response="データにアクセスする権限がありません。"
+            response="該当するユーザー名は存在しますが、データにアクセスする権限がありません。"
           end
         else
           response="「使い方」と入力してください。\nこのチャットの使用方法の一覧を表示します。"

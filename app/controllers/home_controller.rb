@@ -46,7 +46,7 @@ require "date"
 
    if @user && @user.authenticate(params[:password])
      flash[:notice]="既に登録済みのユーザーです。"
-     render("home/normal")
+     render ("home/get_normal_signup")
    else
      @user_new=User.new(name:params[:name],password:params[:password])
      if @user_new.save
@@ -69,7 +69,7 @@ require "date"
       redirect_to("/home/index")
     else
       flash[:notice]="該当するユーザーが見つかりません。"
-      render("home/login")
+      render("home/normal_login")
     end
   end
 

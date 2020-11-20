@@ -5,9 +5,9 @@ require "date"
 before_action :authenticate_user
 before_action :ensure_correct_user,{only:[:show,:edit,:update,:destroy,:delete,:add]}
 
-  def ensure_correct_user                                    #データを登録したユーザー以外に対して登録データの閲覧を禁止
+  def ensure_correct_user                                    #データを登録したユーザー以外のユーザーに対して登録データの閲覧を禁止
     @task=Task.find_by(id: params[:id])
-    if @task.user_id!=@current_user.id
+    if @task.user_id != @current_user.id
       redirect_to("/")
     end
   end
@@ -70,7 +70,7 @@ before_action :ensure_correct_user,{only:[:show,:edit,:update,:destroy,:delete,:
   def delete      #「予約を消す」ボタンが押された際に実行
     @task=Task.find_by(id:params[:id])        #即座に登録データを削除する
     @task.destroy
-    redirect_to("/tasks/memory")
+    redirect_to("/home/memory")
   end
 
   def show

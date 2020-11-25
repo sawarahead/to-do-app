@@ -95,11 +95,12 @@
             <%= link_to("イベントの追加","/events/new",class:"link-to-add-event") %>
           </div>
 
-          <!-単発かつ今日のイベント、毎日のイベント、今日の曜日に毎週あるイベントを表示->
+          <!-単発かつ今日のイベント、毎日のイベント、今日の曜日に毎週あるイベントがあればイベントリストを表示->
           <% if @events.where(repeat:8, date:@today).count >0 || @events.where(repeat:@today.wday).count>0 || @events.where(repeat:7).count>0 %>
             <% @events.each do |event|%>
             <div class="event">
-              <% if (event.repeat==8 && event.date == @today) || event.repeat == @today.wday || event.repeat == 7%>
+              <!-イベントの予定日が今日もしくは今日以前であるイベントだけ表示->
+              <% if (event.repeat==8 && event.date == @today) || ((event.repeat == @today.wday || event.repeat == 7) && event.date <= @today)%>
                 <!-イベント名->
                 <div class="event-name">
                   <%= link_to(event.content,"/events/#{event.id}",class:"event-link")%>

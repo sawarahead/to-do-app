@@ -20,7 +20,7 @@ require "date"
     #タスク達成率・to-do-list関連変数
     @user_tasks=Task.where(user_id: @current_user.id)                           #ユーザーが登録したタスク
     @today_all_tasks=@user_tasks.where("date=?",@today)                         #今日表示予定のタスク
-    @tasks=@user_tasks.where(check:0)                                           #未完了のタスク
+    @tasks=@user_tasks.where(check:0).where(unfinish:0)                         #完了扱いにも未完了扱いにもなっていないタスク
     @unfinish_count=@tasks.where("date < ?",@today).where(unfinish:0).count     #昨日以前で未完了のタスクの数
     @total_task_time=@tasks.where("date=?",@today).sum(:time)                   #今日登録しているタスクの総時間
     #event-list関連変数

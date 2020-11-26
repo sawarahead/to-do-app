@@ -113,11 +113,20 @@ before_action :ensure_correct_user,{only:[:show,:edit,:update,:destroy,:delete,:
   def add
     @today=Date.today
     @task=Task.find_by(id:params[:id])
-    @task_copy = @task.dup                               #データを複製
-    @task_copy.unfinish=1                                #複製したデータの「unfinishカラム」の値を１(未完了扱い)に変更
-    @task_copy.save                                      #複製したデータを保存
-    @task.date=@today                                    #複製元のデータの実行予定日を今日の日付に変更
-    @task.save                                           #複製元データを保存
+    @task_copy=@task.dup                                 #データを複製
+    @task_copy.unfinish= 1                               #複製したデータの「unfinishカラム」の値を１(未完了扱い)に変更
+    @task_copy.save
+    if @task.repeat >= 7                                 #タスクの繰り返し設定が「なし」もしくは「毎日」の場合
+      @task.date=@today                                    #複製元のデータの実行予定日を今日の日付に変更
+      @task.save
+    else                                                   #タスクが「毎週繰り返し」のものである場合
+      @task_copy_today=@task.dup
+      @task_copy_today.repeat= 8                           #今日に加えるタスクは繰り返し設定を「繰り返しなし」に変更
+      @task_copy_today.date=@today                         #日付も今日のものに変更
+      @task_copy_today.save
+      @task.date=@task.date + 7                            #元のデータは日付を１週間後に変更
+      @task.save
+    end
     redirect_to("/tasks/unfinished")
   end
 end

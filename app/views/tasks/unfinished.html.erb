@@ -69,7 +69,7 @@
               </div>
 
               <div class="link-to-finish-unfinished">
-                <%= link_to("完了！","/tasks/#{unfinished_task.id}/destroy",method:"post",class:"finish-link-from-unfinished")%>
+                <%= link_to("終わった！","/tasks/#{unfinished_task.id}/destroy",method:"post",class:"link-to-finish-unfinished")%>
               </div>
             <%end%>
           <%end%>

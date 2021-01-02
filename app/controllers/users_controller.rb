@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
 
-  #before_action :authenticate_user
+    #before_action :authenticate_user
 
-  def logout  #セッションの解除
-    session[:user_id] = nil
-    redirect_to("/")
-  end
+    def logout  #セッションの解除
+        session[:user_id] = nil
+        redirect_to("/")
+    end
+    
 end

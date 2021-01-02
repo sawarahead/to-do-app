@@ -68,7 +68,7 @@
                 <%= link_to("今日のtaskに追加する","/tasks/#{unfinished_task.id}/add", method:"post",class:"add-link")%>
               </div>
 
-              <div class="link-to-finish-unfinished">
+              <div class="task-finish-unfinished">
                 <%= link_to("終わった！","/tasks/#{unfinished_task.id}/destroy",method:"post",class:"link-to-finish-unfinished")%>
               </div>
             <%end%>

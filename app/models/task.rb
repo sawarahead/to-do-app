@@ -5,7 +5,7 @@ class Task < ApplicationRecord
     validates :date, {presence: true}
 
     def getTodayUnfinishedTasks(date)
-        tasks=Task.where(date:date).where(check:0).where(user_id:self).pluck(:content)
+        tasks=Task.where(date:date).where(check:0).where(user_id:self.id).pluck(:content)
         task_list=""
         tasks.each do |task|
             task_list += "・#{task}\n"

@@ -45,11 +45,16 @@ class LinebotController < ApplicationController
                 if user
                     if user.authenticate(event['source']['userId'])
                         user_tasks=tasks.where(user_id:user.id).pluck(:content)
+                        user_events=plans.where(user_id:user.id).pluck(:content)
                         task_list=""
+                        event_list=""
                         user_tasks.each do |user_task|
                             task_list += "・#{user_task}\n"
                         end
-                        response="本日のto-do:\n#{task_list}\n本日のevent:\n#{plans.where(user_id:user.id).pluck(:content)}"
+                        user_events.each do |user_event|
+                            event_list += "・#{user_event}\n"
+                        end
+                        response="本日のto-do:\n#{task_list}\n本日のevent:\n#{event_list}"
                     else
                         response="該当するユーザー名は存在しますが、データにアクセスする権限がありません。"
                     end

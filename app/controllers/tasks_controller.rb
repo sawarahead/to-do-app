@@ -129,5 +129,12 @@ class TasksController < ApplicationController
         end
         redirect_to("/tasks/unfinished")
     end
-    
+
+    def nextday
+      @task=Task.find_by(id:params[:id])
+      @task.date=Date.today+1
+      @task.save
+      redirect_to("/home/index")
+    end
+
 end

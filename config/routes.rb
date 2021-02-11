@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   post "tasks/:id/destroy" => "tasks#destroy"
   post "tasks/:id/add" => "tasks#add"
   post "tasks/:id/delete" => "tasks#delete"
+  post "tasks/:id/nextday" => "tasks#nextday"
 
   get "events/new" => "events#new"
   post "events/create" => "events#create"
@@ -18,7 +19,7 @@ Rails.application.routes.draw do
   post "events/:id/update" => "events#update"
 
   post "callback" => "linebot#callback"
-  
+
   get "auth" => "line_login#auth_top"
   post "line_signup" => "line_login#line_signup"
 

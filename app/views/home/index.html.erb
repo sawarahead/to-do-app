@@ -71,6 +71,9 @@
                   <div class="task-repeat-type">
                     <%= @repeat[task.repeat]%>
                   </div>
+                  <div class="skip-to-nextday">
+                    <%= link_to("明日やる！","/tasks/#{task.id}/nextday",method:"post#",class:"link-to-skip-to-nextday")%>
+                  </div>
                   <div class="task-finish-index">
                     <%= link_to("終わった！","/tasks/#{task.id}/destroy",method:"post",class:"link-to-finish-index")%>
                   </div>

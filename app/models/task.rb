@@ -5,6 +5,6 @@ class Task < ApplicationRecord
   validates :date, {presence: true}
 
   def getTodayUnfinishedTasks (date)
-    return Task.where(date:date).where(check:0)
-  end    
+    return self.where(date:date).where(check:0)
+  end
 end

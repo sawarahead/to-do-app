@@ -22,7 +22,8 @@ class LinebotController < ApplicationController
 
         events = client.parse_events_from(body)
         #登録中のタスク・イベントの中で今日の日付のものを取得
-        tasks = Task.where(date:Date.today).where(check:0)
+        tasks = getTodayUnfinishedTasks(Date.today)
+        #Task.where(date:Date.today).where(check:0)
         plans= Event.where(date:Date.today)
 
         events.each { |event|
@@ -47,7 +48,7 @@ class LinebotController < ApplicationController
                         user_tasks.each do |user_task|
                             task_list += "・#{user_task}\n"
                         end
-                        response="本日のto-do:\n#{task_list}\n本日のevent:\n#{plans.where(user_id:user.id).pluck(:content)}}"
+                        response="本日のto-do:\n#{task_list}\n本日のevent:\n#{plans.where(user_id:user.id).pluck(:content)}"
                     else
                         response="該当するユーザー名は存在しますが、データにアクセスする権限がありません。"
                     end

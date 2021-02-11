@@ -25,15 +25,6 @@ class Task < ApplicationRecord
       Task.where("date<?",today-7).destroy_all   #実行予定日が１週間以上前のデータを削除
     end
 
-    def getTodayUnfinishedTasks(today)
-        tasks=Task.where(date:today).where(check:0)
-        #.where(user_id:self.id).pluck(:content)
-        #task_list=""
-        #tasks.each do |task|
-        #    task_list += "・#{task}\n"
-      #  end
-        #return task_list
-        return tasks
-    end
+    
 
 end

@@ -56,56 +56,11 @@ class EventsController < ApplicationController
 
     def update
         @event=Event.find_by(id:params[:id])
-        if params[:repeat]=="9" && params[:place]=="4"                      #イベント会場・繰り返し機能に関して変更しない場合
-            @event.content=params[:content]
-            @event.date=params[:date]
-            @event.start_time=params[:start_time]
-            @event.end_time=params[:end_time]
-            @event.detail=params[:detail]
-            if @event.save
-                redirect_to("/events/#{params[:id]}")
-            else
-                render("events/edit")
-            end
-        elsif params[:repeat]=="9" && params[:place]!="4"                   #イベント会場に関してのみ変更がある場合
-            @event.content=params[:content]
-            @event.place=params[:place]
-            @event.place_detail=params[:place_detail]
-            @event.date=params[:date]
-            @event.start_time=params[:start_time]
-            @event.end_time=params[:end_time]
-            @event.detail=params[:detail]
-            if @event.save
-                redirect_to("/events/#{params[:id]}")
-            else
-                render("events/edit")
-            end
-        elsif params[:repeat]!="9" && params[:place]=="4"                  #繰り返し機能に関してのみ変更がある場合
-            @event.content=params[:content]
-            @event.date=params[:date]
-            @event.start_time=params[:start_time]
-            @event.end_time=params[:end_time]
-            @event.detail=params[:detail]
-            @event.repeat=params[:repeat]
-            if @event.save
-                redirect_to("/events/#{params[:id]}")
-            else
-                render("events/edit")
-            end
-        else                                                               #全てに変更がある場合
-            @event.content=params[:content]
-            @event.place=params[:place]
-            @event.place_detail=params[:place_detail]
-            @event.date=params[:date]
-            @event.start_time=params[:start_time]
-            @event.end_time=params[:end_time]
-            @event.detail=params[:detail]
-            @event.repeat=params[:repeat]
-            if @event.save
-                redirect_to("/events/#{params[:id]}")
-            else
-                render("events/edit")
-            end
+        @event.EventUpdate(params[:repeat],params[:content],params[:place],params[:place_detail],params[:date],params[:start_time],params[:end_time],params[:detail])
+        if @event.save
+            redirect_to("/events/#{params[:id]}")
+        else
+            render("events/edit")
         end
     end
 

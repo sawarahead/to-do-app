@@ -5,7 +5,7 @@ ul, li {
 
 /*共通===========================================================================*/
 body{
-  background-color:#ffffee;
+  background-image: url("/005-subtle-light-patterns.jpg");
 }
 
 .main{
@@ -291,7 +291,7 @@ header{
   width:40%;
   margin:0 auto;
   border:1px solid rgb(255,100,100);
-  background-color: rgb(255,230,230);
+  background-color: rgba(255,230,230,0.5);
 }
 
 .unfinished-alert :hover{
@@ -323,7 +323,7 @@ header{
   width:48%;
   margin-top:20px;
   margin-left:1%;
-  background-color: rgb(230,230,255);
+  background-color: rgba(230,230,255,0.7);
   border:1px solid rgb(230,230,255);
   border-radius:10px;
   float:left;
@@ -474,7 +474,7 @@ header{
   width:48%;
   margin-top:20px;
   margin-right:1%;
-  background-color: rgb(255,230,230);
+  background-color: rgba(255,230,230,0.7);
   border:1px solid rgb(255,230,230);
   border-radius:10px;
   float:right;

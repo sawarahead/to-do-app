@@ -16,11 +16,9 @@
             <input name="name" value="<%=@response[0]["name"]%>">
         </div>
 
-        <div class="user-password">ユーザーパスワード</div>
         <div>
             <input type="hidden" name="password" value="<%=@response[0]["sub"]%>">
         </div>
-      <!-- <div><font color="red">LINEアカウントを利用する場合、ユーザーパスワードは自動で発行されます。公式アプリとの連携に必要な情報ですので、決して変更しないでください。</font></div> -->
 
         <%if @user%>
             <div class="login-submit">

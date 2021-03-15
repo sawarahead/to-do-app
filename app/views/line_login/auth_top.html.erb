@@ -1,36 +1,36 @@
 <div class="main top-main">
-  <div class="top-message">
-    <h1>Check your deta!</h1>
-    <p>ユーザー情報を確認してください。</p>
-  </div>
+    <div class="top-message">
+        <h1>Check your data!</h1>
+        <p>ユーザー情報を確認してください。</p>
+    </div>
 
-  <%= form_tag("/line_signup",{multipart: true}) do%>
-    <div class="user-picture">ユーザーの写真</div>
-      <img src="<%=@response[0]["picture"]%>" height="100" width="100">
-      <div>
-        <input name="picture" value="<%=@response[0]["picture"]%>">
-      </div>
+    <%= form_tag("/line_signup",{multipart: true}) do%>
+        <div class="user-picture">ユーザーの写真</div>
+        <img src="<%=@response[0]["picture"]%>" height="100" width="100">
+        <div>
+            <input name="picture" value="<%=@response[0]["picture"]%>">
+        </div>
 
-    <div class="user-name">ユーザー名</div>
-      <div>
-        <input name="name" value="<%=@response[0]["name"]%>">
-      </div>
+        <div class="user-name">ユーザー名</div>
+        <div>
+            <input name="name" value="<%=@response[0]["name"]%>">
+        </div>
 
-    <div class="user-password">ユーザーパスワード</div>
-      <div>
-        <input type="password" name="password" value="<%=@response[0]["sub"]%>">
-      </div>
-      <div><font color="red">LINEアカウントを利用する場合、ユーザーパスワードは自動で発行されます。公式アプリとの連携に必要な情報ですので、決して変更しないでください。</font></div>
+        <div class="user-password">ユーザーパスワード</div>
+        <div>
+            <input type="hidden" name="password" value="<%=@response[0]["sub"]%>">
+        </div>
+      <!-- <div><font color="red">LINEアカウントを利用する場合、ユーザーパスワードは自動で発行されます。公式アプリとの連携に必要な情報ですので、決して変更しないでください。</font></div> -->
 
-    <%if @user%>
-      <div class="login-submit">
-        <input type="submit" value="ユーザー情報を確定">
-      </div>
-    <%else%>
-      <div class="login-submit">
-        <input type="submit" value="ユーザー情報を登録">
-      </div>
+        <%if @user%>
+            <div class="login-submit">
+                <input type="submit" value="ユーザー情報を確定">
+            </div>
+        <%else%>
+            <div class="login-submit">
+                <input type="submit" value="ユーザー情報を登録">
+            </div>
+        <%end%>
     <%end%>
-  <%end%>
 
 </div>
